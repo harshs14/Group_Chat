@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions, status
 from django.contrib.auth.models import User
-from app.serializers import UserSerializer, UserLoginSerializer
+from app.serializers import UserRegisterSerializer, UserLoginSerializer
 from rest_framework.response import Response
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -20,7 +20,7 @@ from django.http import HttpResponse
 # -----------------------User Registration/Signup-------------------------------------------------------------------
 class Register(generics.CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserRegisterSerializer
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, *args, **kwargs):
@@ -93,13 +93,10 @@ class Login(generics.CreateAPIView):
 
         else:
             return Response({'info': 'wrong credentials'}, status=status.HTTP_200_OK)
-#
+
 #     def get(self, request, *args, **kwagrs):
 #         if request.user.is_authenticated:
 #             return redirect('home')
-#         else:
-#             form = LoginForm()
-#         return render(request, 'app/login.html', {'form': form})
 #
 #
 # class Home(generics.ListCreateAPIView):
