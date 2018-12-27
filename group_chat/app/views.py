@@ -81,29 +81,29 @@ class Login(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
 
-        username = request.POST.get['username']
-        password = request.POST.get['password']
+        username = request.POST['username']
+        password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
                 login(request, user)
-                redirect('home')
+                return Response({'info': 'logged in'}, status=status.HTTP_200_OK)
             else:
-                return HttpResponse('Please! Verify your Email first')
+                return Response({'info': 'verify email first'}, status=status.HTTP_200_OK)
+
         else:
-            messages.error(request, 'Username or Password is incorrect')
-            return redirect('login')
-
-    # def get(self, request, *args, **kwagrs):
-    #     if request.user.is_authenticated:
-    #         return redirect('home')
-    #     else:
-    #         form = LoginForm()
-    #     return render(request, 'app/login.html', {'form': form})
-
-
-class Home(generics.ListCreateAPIView):
-
-    def get(self, request, *args, **kwargs):
-
-        return Response({'info': 'hi, you are logged in'}, status=status.HTTP_200_OK)
+            return Response({'info': 'wrong credentials'}, status=status.HTTP_200_OK)
+#
+#     def get(self, request, *args, **kwagrs):
+#         if request.user.is_authenticated:
+#             return redirect('home')
+#         else:
+#             form = LoginForm()
+#         return render(request, 'app/login.html', {'form': form})
+#
+#
+# class Home(generics.ListCreateAPIView):
+#
+#     def get(self, request, *args, **kwargs):
+#
+#         return Response({'info': 'hi, you are logged in'}, status=status.HTTP_200_OK)
