@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -178,3 +178,9 @@ JWT_AUTH = {
     'JWT_AUTH_COOKIE': None,
 
 }
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'onlineauction.si18@gmail.com'
+EMAIL_HOST_PASSWORD = 'onlineauctionhpi'
+EMAIL_PORT = 587
