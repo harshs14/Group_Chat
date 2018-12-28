@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions, status
 from django.contrib.auth.models import User
-from app.serializers import UserRegisterSerializer, UserLoginSerializer
+from app.serializers import UserRegisterSerializer, UserLoginSerializer, UserProfileSerializer
 from rest_framework.response import Response
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -104,3 +104,27 @@ class Login(generics.CreateAPIView):
 #     def get(self, request, *args, **kwargs):
 #
 #         return Response({'info': 'hi, you are logged in'}, status=status.HTTP_200_OK)
+
+
+class UserProfile(generics.CreateAPIView):
+
+    queryset = User.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+
+        # user_obj = request.user.username
+        # gender = request.POST['gender']
+        # dob = request.POST['date_of_birth']
+        # avatar = request.FILES['avatar']
+        # phone_no = request.POST['phone_no']
+
+        serializer = UserProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            member = serializer.save(commit=False)
+            member.user = request.user.username
+            member.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
