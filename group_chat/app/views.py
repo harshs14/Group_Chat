@@ -120,11 +120,10 @@ class UserProfile(generics.CreateAPIView):
         # avatar = request.FILES['avatar']
         # phone_no = request.POST['phone_no']
 
-        serializer = UserProfileSerializer(data=request.data)
+        serializer = UserProfileSerializer(data=request.data, instance=request.user.member)
+
         if serializer.is_valid():
-            member = serializer.save(commit=False)
-            member.user = request.user.username
-            member.save()
+            serializer.save(user_obj=request.user.username)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
