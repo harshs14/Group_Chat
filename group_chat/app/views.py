@@ -94,10 +94,10 @@ class Login(generics.CreateAPIView):
         else:
             return Response({'info': 'wrong credentials'}, status=status.HTTP_200_OK)
 
-#     def get(self, request, *args, **kwagrs):
-#         if request.user.is_authenticated:
-#             return redirect('home')
-#
+    # def get(self, request, *args, **kwagrs):
+    #     if request.user.is_authenticated:
+    #         return redirect('profile')
+
 #
 # class Home(generics.ListCreateAPIView):
 #
@@ -106,7 +106,7 @@ class Login(generics.CreateAPIView):
 #         return Response({'info': 'hi, you are logged in'}, status=status.HTTP_200_OK)
 
 
-class UserProfile(generics.CreateAPIView):
+class UserProfile(generics.ListCreateAPIView):
 
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
@@ -114,16 +114,10 @@ class UserProfile(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
 
-        # user_obj = request.user.username
-        # gender = request.POST['gender']
-        # dob = request.POST['date_of_birth']
-        # avatar = request.FILES['avatar']
-        # phone_no = request.POST['phone_no']
-
-        serializer = UserProfileSerializer(data=request.data, instance=request.user.member)
+        serializer = UserProfileSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save(user_obj=request.user.username)
+            serializer.save(user=self.request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
