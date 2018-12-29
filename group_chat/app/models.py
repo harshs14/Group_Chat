@@ -14,25 +14,25 @@ class Member(models.Model):
         ('Other', 'Other')
     )
 
-    user_obj = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     # name = models.CharField(max_length=100, blank=True,null=True)
     # email = models.EmailField(max_length=70, null=True, blank=True, unique=True)
-    phone_number = PhoneNumberField(blank=True, help_text='Contact phone number')
+    # phone_number = PhoneNumberField(blank=True, help_text='Contact phone number')
     date_of_birth = models.DateField(max_length=10, null=True, blank=True)
     avatar = models.ImageField(upload_to='member_pic', default='profile.png')
     gender = models.CharField(max_length=10, choices=GENDER_SET, default='None')
 
     def __str__(self):
         return self.user.username
-
-    @receiver(post_save, sender=User)
-    def create_Member(sender, instance, created, **kwargs):
-        if created:
-            Member.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_Member(sender, instance, **kwargs):
-        instance.member.save()
+    #
+    # @receiver(post_save, sender=User)
+    # def create_Member(sender, instance, created, **kwargs):
+    #     if created:
+    #         Member.objects.create(user=instance)
+    #
+    # @receiver(post_save, sender=User)
+    # def save_Member(sender, instance, **kwargs):
+    #     instance.member.save()
 
 
 class Group(models.Model):

@@ -10,7 +10,7 @@ urlpatterns = [
             views.Activate.as_view(), name='activate'),
     # re_path(r'^home/$', views.Home.as_view(), name='home'),
     re_path(r'^login/$', views.Login.as_view(), name='login'),
-    re_path(r'^profile/(?P<user_id>[0-9]+)/$', views.UserProfile.as_view(), name='profile'),
+    re_path(r'^profile/$', views.UserProfile.as_view(), name='profile'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
