@@ -15,21 +15,38 @@ from django.views import View
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from django.http import HttpResponse
+from rest_framework.views import APIView
 
 
 # -----------------------User Registration/Signup-------------------------------------------------------------------
-class Register(generics.CreateAPIView):
+class Register(APIView):
     queryset = User.objects.all()
     serializer_class = UserRegisterSerializer
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, *args, **kwargs):
 
-        user = User.objects.create_user(first_name=request.POST.get('first_name'),
-                                        last_name=request.POST.get('last_name'),
-                                        email=request.POST.get('email'),
-                                        username=request.POST.get('username'),
-                                        password=request.POST.get('password'))
+        email = request.data.get('email')
+        username = request.data.get('username')
+        password = request.data.get('password')
+        confirm_password = request.data.get('confirm_password')
+
+        if email is None:
+            return Response({'info': 'enter email!!!'})
+
+        if password is None:
+            return Response({'info': 'enter password!!!'})
+
+        if password != confirm_password :
+            return Response({'info': 'password does not match'})
+
+        if User.objects.filter(username=username):
+            return Response({'info': 'username exits!!!'})
+
+        if User.objects.filter(email=email):
+            return Response({'info': 'email exits!!!'})
+
+        user = User.objects.create_user(email=email, username=username, password=password)
 
         user.is_active = False
         user.save()
@@ -81,8 +98,18 @@ class Login(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
 
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.data['username']
+        password = request.data['password']
+
+        if username is None:
+            return Response({'info': 'enter username!!!'})
+
+        if password is None:
+            return Response({'info': 'enter password!!!'})
+
+        if User.objects.filter(username=username):
+            return Response({'info': 'invalid username!!!'})
+
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
@@ -106,7 +133,7 @@ class Login(generics.CreateAPIView):
 #         return Response({'info': 'hi, you are logged in'}, status=status.HTTP_200_OK)
 
 
-class UserProfile(generics.ListCreateAPIView):
+class UserProfile(APIView):
 
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
