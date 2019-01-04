@@ -16,6 +16,7 @@ from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from django.http import HttpResponse
 from rest_framework.views import APIView
+from . models import Member, Message, Group
 
 
 # -----------------------User Registration/Signup-------------------------------------------------------------------
@@ -107,9 +108,6 @@ class Login(generics.CreateAPIView):
         if password is None:
             return Response({'info': 'enter password!!!'})
 
-        if User.objects.filter(username=username):
-            return Response({'info': 'invalid username!!!'})
-
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
@@ -117,7 +115,6 @@ class Login(generics.CreateAPIView):
                 return Response({'info': 'logged in'}, status=status.HTTP_200_OK)
             else:
                 return Response({'info': 'verify email first'}, status=status.HTTP_200_OK)
-
         else:
             return Response({'info': 'wrong credentials'}, status=status.HTTP_200_OK)
 
@@ -133,13 +130,24 @@ class Login(generics.CreateAPIView):
 #         return Response({'info': 'hi, you are logged in'}, status=status.HTTP_200_OK)
 
 
-class UserProfile(APIView):
+# class UserProfile(APIView):
+#
+#     permission_classes = (permissions.IsAuthenticated,)
+#
+#     def get(self, request, *args, **kwargs):
+#         user_id = request.user
+#         profile = Member.objects.filter(user=user_id)
+#         serializer = UserProfileSerializer(profile)
+#         return Response(serializer.data)
+
+
+class EditUserProfile(APIView):
 
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def post(self, request, *args, **kwargs):
+    def patch(self, request, *args, **kwargs):
 
         serializer = UserProfileSerializer(data=request.data)
 

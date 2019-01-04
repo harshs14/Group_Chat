@@ -1,5 +1,4 @@
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
@@ -8,19 +7,13 @@ from django.utils import timezone
 
 class Member(models.Model):
 
-    GENDER_SET = (
-        ('Male', 'Male'),
-        ('Female', 'Female'),
-        ('Other', 'Other')
-    )
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, null=False, blank=False)
     phone_number = PhoneNumberField(blank=True, help_text='Contact phone number')
     avatar = models.ImageField(upload_to='member_pic', default='profile.png')
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 
 class Group(models.Model):
