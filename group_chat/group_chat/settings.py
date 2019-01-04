@@ -25,7 +25,7 @@ SECRET_KEY = '4af@ml_4@u9*e(1gi*so^^ebtaq5g%hw592ff7kv_qgxse9$b&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['d63233f2.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['a5f51a0a.ngrok.io', '127.0.0.1']
 
 
 # Application definition
@@ -180,7 +180,7 @@ JWT_AUTH = {
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
 
-    'JWT_ALLOW_REFRESH': False,
+    'JWT_ALLOW_REFRESH': True,
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
