@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions, status
 from django.contrib.auth.models import User
-from app.serializers import UserRegisterSerializer, UserLoginSerializer, UserProfileSerializer
+from .serializers import UserRegisterSerializer, UserLoginSerializer, UserProfileSerializer, GroupSerializer
 from rest_framework.response import Response
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -118,11 +118,7 @@ class Login(generics.CreateAPIView):
         else:
             return Response({'info': 'wrong credentials'}, status=status.HTTP_200_OK)
 
-    # def get(self, request, *args, **kwagrs):
-    #     if request.user.is_authenticated:
-    #         return redirect('profile')
 
-#
 # class Home(generics.ListCreateAPIView):
 #
 #     def get(self, request, *args, **kwargs):
@@ -130,29 +126,44 @@ class Login(generics.CreateAPIView):
 #         return Response({'info': 'hi, you are logged in'}, status=status.HTTP_200_OK)
 
 
-# class UserProfile(APIView):
+# class UserProfile(generics.RetrieveUpdateAPIView):
 #
+#     queryset = User.objects.all()
+#     serializer_class = UserProfileSerializer
 #     permission_classes = (permissions.IsAuthenticated,)
 #
-#     def get(self, request, *args, **kwargs):
-#         user_id = request.user
-#         profile = Member.objects.filter(user=user_id)
-#         serializer = UserProfileSerializer(profile)
-#         return Response(serializer.data)
+#     # def get(self, request, *args, **kwargs):
+#     #     user_id = request.user
 
 
-class EditUserProfile(APIView):
+class EditUserProfile(generics.ListCreateAPIView):
 
-    queryset = User.objects.all()
+    queryset = Member.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def patch(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
 
         serializer = UserProfileSerializer(data=request.data)
 
         if serializer.is_valid():
             serializer.save(user=self.request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CreateGroup(generics.ListCreateAPIView):
+
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+
+        serializer = GroupSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save(admin=self.request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

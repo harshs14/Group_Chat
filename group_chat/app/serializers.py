@@ -37,5 +37,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
         read_only_fields = ('user',)
 
 
+class GroupSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Group
+        fields = ('name', 'avatar', 'admin')
+        read_only_fields = ('admin',)
 
