@@ -31,7 +31,7 @@ class Message(models.Model):
 
     message = models.CharField(max_length=100, null=True)
     messaged_by = models.OneToOneField(Member, on_delete=models.CASCADE)
-    file_message = models.FileField(upload_to ='shared_files', null=True, blank=True)
+    file_message = models.FileField(upload_to='shared_files', null=True, blank=True)
     time = models.DateTimeField(default=timezone.now, null=True)
     group = models.OneToOneField(Group, on_delete=models.CASCADE)
 

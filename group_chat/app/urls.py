@@ -1,4 +1,4 @@
-from django.conf.urls import re_path
+from django.urls import re_path, path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -12,8 +12,10 @@ urlpatterns = [
     re_path(r'^login/$', views.Login.as_view(), name='login'),
     # re_path(r'^profile/(?P<user_id>[0-9]+)/$', views.UserProfile.as_view(), name='profile'),
     re_path(r'^editprofile/(?P<user_id>[0-9]+)/$', views.EditUserProfile.as_view(), name='edit_profile'),
-    re_path(r'^creategroup/$', views.CreateGroup.as_view(), name='edit_profile')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    re_path(r'^creategroup/$', views.CreateGroup.as_view(), name='create_group'),
+    path('addmembers/<int:pk>/', views.AddMember.as_view(), name='add_member'),
+
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 if settings.DEBUG:
