@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions, status
 from django.contrib.auth.models import User
-from .serializers import UserRegisterSerializer, UserLoginSerializer, UserProfileSerializer, GroupSerializer
+from .serializers import UserRegisterSerializer, UserLoginSerializer, UserProfileSerializer, GroupSerializer, \
+    AddMemberSerializer
 from rest_framework.response import Response
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -152,6 +153,23 @@ class EditUserProfile(generics.ListCreateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class UpdateUserProfile(APIView):
+
+    queryset = Member.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, user_id, *args, **kwargs):
+
+        profile = Member.objects.get(id=user_id)
+        serializer = UserProfileSerializer(profile, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class CreateGroup(generics.ListCreateAPIView):
 
     queryset = Group.objects.all()
@@ -166,4 +184,25 @@ class CreateGroup(generics.ListCreateAPIView):
             serializer.save(admin=self.request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AddMember(generics.ListCreateAPIView):
+
+    queryset = Member.objects.all()
+    serializer_class = AddMemberSerializer
+    permission_classes = (permissions.IsAuthenticated, )
+
+    def post(self, request, *args, **kwargs):
+
+        group = Group.objects.get(id=kwargs['pk'])
+        member = Group.members.objects.get(phone_number=request.data)
+
+        serializer = AddMemberSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save(name=group, members=member)
+            return Response({'pk': group}, serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
