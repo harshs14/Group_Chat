@@ -13,7 +13,8 @@ urlpatterns = [
     re_path(r'^profile/(?P<user_id>[0-9]+)/$', views.UserProfile.as_view(), name='user_profile'),
     re_path(r'^createprofile/$', views.CreateUserProfile.as_view(), name='create_profile'),
     re_path(r'^creategroup/$', views.CreateGroup.as_view(), name='create_group'),
-    re_path(r'groupprofile/(?P<id>[0-9]+)/$', views.GroupProfile.as_view(), name='group_profile')
+    re_path(r'groupprofile/(?P<id>[0-9]+)/$', views.GroupProfile.as_view(), name='group_profile'),
+    re_path(r'logout/$',views.Logout.as_view(), name='logout'),
     # path('addmembers/<int:pk>/', views.AddMember.as_view(), name='add_member'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
