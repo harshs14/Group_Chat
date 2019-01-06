@@ -10,8 +10,8 @@ urlpatterns = [
             views.Activate.as_view(), name='activate'),
     # re_path(r'^home/$', views.Home.as_view(), name='home'),
     re_path(r'^login/$', views.Login.as_view(), name='login'),
-    # re_path(r'^profile/(?P<user_id>[0-9]+)/$', views.UserProfile.as_view(), name='profile'),
-    re_path(r'^editprofile/(?P<user_id>[0-9]+)/$', views.EditUserProfile.as_view(), name='edit_profile'),
+    re_path(r'^profile/(?P<user_id>[0-9]+)/$', views.UserProfile.as_view(), name='user_profile'),
+    re_path(r'^createprofile/$', views.CreateUserProfile.as_view(), name='create_profile'),
     re_path(r'^creategroup/$', views.CreateGroup.as_view(), name='create_group'),
     path('addmembers/<int:pk>/', views.AddMember.as_view(), name='add_member'),
 
