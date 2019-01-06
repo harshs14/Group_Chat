@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions, status
+from rest_framework import generics, permissions, status, mixins
 from django.contrib.auth.models import User
 from .serializers import UserRegisterSerializer, UserLoginSerializer, UserProfileSerializer, GroupSerializer, \
     AddMemberSerializer
@@ -67,10 +67,10 @@ class Register(APIView):
         send_mail(subject, message, from_mail, to_mail, fail_silently=False)
         messages.success(request, 'VERIFY YOUR EMAIL.')
 
-        return Response({'info': 'user created'}, status=status.HTTP_201_CREATED)
+        return Response({'info': 'user created', 'user_id': user.id}, status=status.HTTP_201_CREATED)
 
 
-class Activate(View):
+class Activate(APIView):
 
     def get(self, request, token, uidb64):
 
@@ -113,31 +113,14 @@ class Login(generics.CreateAPIView):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return Response({'info': 'logged in'}, status=status.HTTP_200_OK)
+                return Response({'info': 'logged in', 'user_id': user.id}, status=status.HTTP_200_OK)
             else:
                 return Response({'info': 'verify email first'}, status=status.HTTP_200_OK)
         else:
             return Response({'info': 'wrong credentials'}, status=status.HTTP_200_OK)
 
 
-# class Home(generics.ListCreateAPIView):
-#
-#     def get(self, request, *args, **kwargs):
-#
-#         return Response({'info': 'hi, you are logged in'}, status=status.HTTP_200_OK)
-
-
-# class UserProfile(generics.RetrieveUpdateAPIView):
-#
-#     queryset = User.objects.all()
-#     serializer_class = UserProfileSerializer
-#     permission_classes = (permissions.IsAuthenticated,)
-#
-#     # def get(self, request, *args, **kwargs):
-#     #     user_id = request.user
-
-
-class EditUserProfile(generics.ListCreateAPIView):
+class CreateUserProfile(generics.ListCreateAPIView):
 
     queryset = Member.objects.all()
     serializer_class = UserProfileSerializer
@@ -153,21 +136,16 @@ class EditUserProfile(generics.ListCreateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UpdateUserProfile(APIView):
+class UserProfile(generics.GenericAPIView,
+                  mixins.UpdateModelMixin):
 
     queryset = Member.objects.all()
+    lookup_field = 'user_id'
     serializer_class = UserProfileSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def post(self, request, user_id, *args, **kwargs):
-
-        profile = Member.objects.get(id=user_id)
-        serializer = UserProfileSerializer(profile, data=request.data)
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def put(self, request, user_id, *args, **kwargs):
+        return self.update(request, user_id)
 
 
 class CreateGroup(generics.ListCreateAPIView):
