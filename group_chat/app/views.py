@@ -169,7 +169,7 @@ class GroupProfile (generics.GenericAPIView,
                     mixins.DestroyModelMixin):
 
     queryset = Group.objects.all()
-    lookup_field = 'id'
+    lookup_url_kwarg = 'id'
     serializer_class = GroupSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
