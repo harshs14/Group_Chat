@@ -164,23 +164,39 @@ class CreateGroup(generics.ListCreateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class AddMember(generics.ListCreateAPIView):
+class GroupProfile (generics.GenericAPIView,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin):
 
-    queryset = Member.objects.all()
-    serializer_class = AddMemberSerializer
-    permission_classes = (permissions.IsAuthenticated, )
+    queryset = Group.objects.all()
+    lookup_field = 'id'
+    serializer_class = GroupSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
-    def post(self, request, *args, **kwargs):
+    def put(self, request, id, *args, **kwargs):
+        return self.update(request, id)
 
-        group = Group.objects.get(id=kwargs['pk'])
-        member = Group.members.objects.get(phone_number=request.data)
+    def delete(self, request, id, *args, **kwargs):
+        return self.destroy(request, id)
 
-        serializer = AddMemberSerializer(data=request.data)
 
-        if serializer.is_valid():
-            serializer.save(name=group, members=member)
-            return Response({'pk': group}, serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class AddMember(generics.ListCreateAPIView):
+#
+#     queryset = Member.objects.all()
+#     serializer_class = AddMemberSerializer
+#     permission_classes = (permissions.IsAuthenticated, )
+#
+#     def post(self, request, *args, **kwargs):
+#
+#         group = Group.objects.get(id=kwargs['pk'])
+#         member = Group.members.objects.get(phone_number=request.data)
+#
+#         serializer = AddMemberSerializer(data=request.data)
+#
+#         if serializer.is_valid():
+#             serializer.save(name=group, members=member)
+#             return Response({'pk': group}, serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 

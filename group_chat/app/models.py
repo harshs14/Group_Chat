@@ -21,7 +21,7 @@ class Group(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True, unique=True)
     avatar = models.ImageField(upload_to='group_pic', default='profile.png')
     members = models.ManyToManyField(Member)
-    admin = models.OneToOneField(User, on_delete=models.CASCADE)
+    admin = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.id)
