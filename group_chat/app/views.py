@@ -137,12 +137,16 @@ class CreateUserProfile(generics.ListCreateAPIView):
 
 
 class UserProfile(generics.GenericAPIView,
-                  mixins.UpdateModelMixin):
+                  mixins.UpdateModelMixin,
+                  mixins.RetrieveModelMixin):
 
     queryset = Member.objects.all()
     lookup_field = 'user_id'
     serializer_class = UserProfileSerializer
     permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, user_id, *args, **kwargs):
+        return self.retrieve(request, user_id)
 
     def put(self, request, user_id, *args, **kwargs):
         return self.update(request, user_id)
@@ -166,12 +170,16 @@ class CreateGroup(generics.ListCreateAPIView):
 
 class GroupProfile (generics.GenericAPIView,
                     mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin):
+                    mixins.DestroyModelMixin,
+                    mixins.RetrieveModelMixin):
 
     queryset = Group.objects.all()
     lookup_url_kwarg = 'id'
     serializer_class = GroupSerializer
     permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id, *args, **kwargs):
+        return self.retrieve(request, id)
 
     def put(self, request, id, *args, **kwargs):
         return self.update(request, id)
@@ -198,5 +206,12 @@ class GroupProfile (generics.GenericAPIView,
 #             return Response({'pk': group}, serializer.data)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class Logout(APIView):
+
+    def get(self, request, *args, **kwargs):
+
+        logout(request)
+        return Response({'info': 'logged out'})
 
 
