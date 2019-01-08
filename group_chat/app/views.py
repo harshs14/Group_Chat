@@ -1,3 +1,4 @@
+import json
 from rest_framework import generics, permissions, status, mixins
 from django.contrib.auth.models import User
 from .serializers import UserRegisterSerializer, UserLoginSerializer, UserProfileSerializer, GroupSerializer, \
@@ -186,6 +187,25 @@ class GroupProfile (generics.GenericAPIView,
 
     def delete(self, request, id, *args, **kwargs):
         return self.destroy(request, id)
+
+
+class ContactList(APIView):
+
+    def post(self, request, *args, **kwargs):
+
+        contact_list = request.data(json.loads(request.body))
+        for i in contact_list:
+
+            j = Member.objects.filter(phone_number=i['number'])
+            return Response({'user_list': j})
+
+
+
+
+
+
+
+
 
 
 # class AddMember(generics.ListCreateAPIView):

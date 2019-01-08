@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('', include('app.urls')),
-    re_path(r'^api-token-auth/', obtain_jwt_token),
-    re_path(r'^api-token-refresh/', refresh_jwt_token),
-    re_path(r'^api-token-verify/', verify_jwt_token),
+    re_path(r'^obtain/', obtain_jwt_token),
+    re_path(r'^refresh/', refresh_jwt_token),
+    re_path(r'^verify/', verify_jwt_token),
    ]
