@@ -16,6 +16,7 @@ urlpatterns = [
     re_path(r'groupprofile/(?P<id>[0-9]+)/$', views.GroupProfile.as_view(), name='group_profile'),
     re_path(r'logout/$',views.Logout.as_view(), name='logout'),
     # path('addmembers/<int:pk>/', views.AddMember.as_view(), name='add_member'),
+    re_path(r'contactlist/$', views.ContactList.as_view(), name='contact_list')
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
