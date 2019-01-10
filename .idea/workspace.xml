@@ -3,61 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9f7f0221-5781-4846-a56f-d2348f8f1759" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/migrations/0002_auto_20190106_2259.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/group_chat/group_chat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/group_chat/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg_KZi95Cb.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg_ZuWvnIh.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg_dSboUOJ.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg_tUFfGrH.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg_xjipz3y.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/me.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/me_gIksslH.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/me_s7PuTgh.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/withQR.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/withQR_T5FWReA.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/withQR_c5On7Ad.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/WhatsApp_Image_2018-10-30_at_5.07.33_PM.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_0lxtSGz.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_1IHVY3H.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_2Y7AQDc.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_3EalfIk.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_3KH0Ysz.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_6uCq2Pi.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_7kmeWcA.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_CrZ0Smu.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_DwDMhFZ.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_NUfNrt0.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_RI2dJuG.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_ZMMDujN.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_bn0Tkd1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_cULrs8E.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_dELSfNh.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_jzGfSKD.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_lL8Gf1Y.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_wH5iWnW.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_yY6Zj84.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_6Py8A9K.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_9UqEuiE.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_BSlKpIs.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_EdBm6Sq.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_Hv3PaBc.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_LOaVObl.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_Y43dl5o.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_fkPRy8S.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_jcirMnz.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_tbRGN9m.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_uq8jn47.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/profile1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/profile1_fbRSQpq.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/withQR.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,13 +55,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="27" />
-          <entry key="py" value="6049" />
+          <entry key="py" value="6053" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="27" />
-          <entry key="Python" value="6049" />
+          <entry key="Python" value="6053" />
         </counts>
       </usages-collector>
     </session>
@@ -125,8 +71,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/group_chat/group_chat/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
+            <state relative-caret-position="164">
+              <caret line="130" column="44" selection-start-line="130" selection-start-column="44" selection-end-line="130" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -147,7 +93,7 @@
         <entry file="file://$PROJECT_DIR$/group_chat/app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -195,8 +141,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
+            <state relative-caret-position="34">
+              <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -238,7 +184,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1350" />
@@ -260,6 +206,12 @@
               <item name="Group_Chat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Group_Chat" type="462c0819:PsiDirectoryNode" />
               <item name="group_chat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Group_Chat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Group_Chat" type="462c0819:PsiDirectoryNode" />
+              <item name="group_chat" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Group_Chat" type="b2602c69:ProjectViewProjectNode" />
@@ -434,27 +386,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/group_chat/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/group_chat/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
+        <state relative-caret-position="164">
+          <caret line="130" column="44" selection-start-line="130" selection-start-column="44" selection-end-line="130" selection-end-column="44" />
         </state>
       </provider>
     </entry>
