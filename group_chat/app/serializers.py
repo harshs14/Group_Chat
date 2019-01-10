@@ -1,7 +1,11 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Member, Message, Group
+from .models import Message, Group
 from rest_framework.validators import UniqueValidator
+
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -32,9 +36,9 @@ class UserLoginSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Member
-        fields = ('user', 'name', 'avatar', 'phone_number')
-        read_only_fields = ('user',)
+        model = User
+        fields = ('name', 'avatar', 'phone_number')
+        # read_only_fields = ('user',)
 
 
 class GroupSerializer(serializers.ModelSerializer):

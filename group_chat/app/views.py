@@ -18,7 +18,7 @@ from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from django.http import HttpResponse
 from rest_framework.views import APIView
-from . models import Member, Message, Group
+from . models import Message, Group, User
 
 
 # -----------------------User Registration/Signup-------------------------------------------------------------------
@@ -120,37 +120,35 @@ class Login(generics.CreateAPIView):
         else:
             return Response({'info': 'wrong credentials'}, status=status.HTTP_200_OK)
 
+#
+# class CreateUserProfile(generics.ListCreateAPIView):
+#
+#     queryset = User.objects.all()
+#     serializer_class = UserProfileSerializer
+#     permission_classes = (permissions.IsAuthenticated,)
+#
+#     def post(self, request, *args, **kwargs):
+#
+#         serializer = UserProfileSerializer(data=request.data)
+#
+#         if serializer.is_valid():
+#             serializer.save(user=self.request.user)
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class CreateUserProfile(generics.ListCreateAPIView):
 
-    queryset = Member.objects.all()
+class UserProfile(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
+
+    queryset = User.objects.all()
+    lookup_field = 'id'
     serializer_class = UserProfileSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, id, *args, **kwargs):
+        return self.retrieve(request, id)
 
-        serializer = UserProfileSerializer(data=request.data)
-
-        if serializer.is_valid():
-            serializer.save(user=self.request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class UserProfile(generics.GenericAPIView,
-                  mixins.UpdateModelMixin,
-                  mixins.RetrieveModelMixin):
-
-    queryset = Member.objects.all()
-    lookup_field = 'user_id'
-    serializer_class = UserProfileSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def get(self, request, user_id, *args, **kwargs):
-        return self.retrieve(request, user_id)
-
-    def put(self, request, user_id, *args, **kwargs):
-        return self.update(request, user_id)
+    def put(self, request, id, *args, **kwargs):
+        return self.update(request, id)
 
 
 class CreateGroup(generics.ListCreateAPIView):
@@ -196,7 +194,7 @@ class ContactList(APIView):
         data = json.loads(request.body)
         contact_list = data['number']
         for i in contact_list:
-            j = Member.objects.filter(phone_number=i)
+            j = User.objects.filter(phone_number=i)
         return Response({'user_list': j})
 
 
