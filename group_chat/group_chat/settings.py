@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'app.apps.AppConfig',
+    'app',
     'phonenumber_field',
 ]
 
@@ -132,7 +132,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "static", "static")
  ]
 MEDIA_URL = '/media/'
 # LOGIN_URL = 'login'
@@ -192,3 +192,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'onlineauction.si18@gmail.com'
 EMAIL_HOST_PASSWORD = 'onlineauctionhpi'
 EMAIL_PORT = 587
+
+AUTH_USER_MODEL = 'app.User'
