@@ -25,7 +25,7 @@ SECRET_KEY = '4af@ml_4@u9*e(1gi*so^^ebtaq5g%hw592ff7kv_qgxse9$b&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['b882a89e.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['cd0a4138.ngrok.io', '127.0.0.1']
 
 
 # Application definition
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'group_chat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'group.chat',
+        'NAME': 'group_chat',
         'USER': 'postgres',
         'PASSWORD': 'postgresql',
         'HOST': 'localhost',
@@ -132,8 +132,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
-     os.path.join(BASE_DIR, "static"),
-     '/var/www/static/',
+    os.path.join(BASE_DIR, "static", "static")
  ]
 MEDIA_URL = '/media/'
 # LOGIN_URL = 'login'

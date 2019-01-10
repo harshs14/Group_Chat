@@ -193,19 +193,11 @@ class ContactList(APIView):
 
     def post(self, request, *args, **kwargs):
 
-        contact_list = request.data(json.loads(request.body))
+        data = json.loads(request.body)
+        contact_list = data['number']
         for i in contact_list:
-
-            j = Member.objects.filter(phone_number=i['number'])
-            return Response({'user_list': j})
-
-
-
-
-
-
-
-
+            j = Member.objects.filter(phone_number=i)
+        return Response({'user_list': j})
 
 
 # class AddMember(generics.ListCreateAPIView):
