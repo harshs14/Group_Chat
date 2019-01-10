@@ -1,4 +1,3 @@
-
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
@@ -20,8 +19,8 @@ class Group(models.Model):
 
     name = models.CharField(max_length=100, blank=True, null=True, unique=True)
     avatar = models.ImageField(upload_to='group_pic', default='profile.png')
-    members = models.ManyToManyField(Member)
-    admin = models.ForeignKey(User, on_delete=models.CASCADE)
+    members = models.ManyToManyField(User, related_name='%(class)s_member_of_group')
+    admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='%(class)s_admin_of_group')
 
     def __str__(self):
         return str(self.id)

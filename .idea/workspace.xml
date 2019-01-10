@@ -3,10 +3,61 @@
   <component name="ChangeListManager">
     <list default="true" id="9f7f0221-5781-4846-a56f-d2348f8f1759" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/app/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/app/migrations/0002_auto_20190106_2259.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/app/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/group_chat/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/group_chat/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/group_chat/group_chat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/group_chat/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/group_chat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/group_chat/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg_KZi95Cb.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg_ZuWvnIh.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg_dSboUOJ.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg_tUFfGrH.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/id_card_clg_xjipz3y.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/me.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/me_gIksslH.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/me_s7PuTgh.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/withQR.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/withQR_T5FWReA.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/withQR_c5On7Ad.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/WhatsApp_Image_2018-10-30_at_5.07.33_PM.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_0lxtSGz.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_1IHVY3H.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_2Y7AQDc.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_3EalfIk.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_3KH0Ysz.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_6uCq2Pi.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_7kmeWcA.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_CrZ0Smu.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_DwDMhFZ.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_NUfNrt0.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_RI2dJuG.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_ZMMDujN.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_bn0Tkd1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_cULrs8E.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_dELSfNh.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_jzGfSKD.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_lL8Gf1Y.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_wH5iWnW.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/id_card_clg_yY6Zj84.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_6Py8A9K.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_9UqEuiE.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_BSlKpIs.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_EdBm6Sq.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_Hv3PaBc.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_LOaVObl.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_Y43dl5o.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_fkPRy8S.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_jcirMnz.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_tbRGN9m.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/me_uq8jn47.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/profile1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/profile1_fbRSQpq.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/withQR.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,20 +69,24 @@
     <session id="1713823416">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.25" value="2" />
           <entry key="project.open.time.31" value="1" />
+          <entry key="project.open.time.32" value="1" />
+          <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.34" value="2" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.52" value="1" />
+          <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="17" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -39,7 +94,7 @@
           <entry key="html" value="2" />
           <entry key="jpeg" value="2" />
           <entry key="jpg" value="1" />
-          <entry key="py" value="15" />
+          <entry key="py" value="16" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
@@ -48,30 +103,30 @@
           <entry key="HTML" value="2" />
           <entry key="Image" value="3" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="15" />
+          <entry key="Python" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="27" />
-          <entry key="py" value="5939" />
+          <entry key="py" value="6049" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="27" />
-          <entry key="Python" value="5939" />
+          <entry key="Python" value="6049" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/group_chat/group_chat/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            <state relative-caret-position="187">
+              <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
             </state>
           </provider>
         </entry>
@@ -79,7 +134,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/group_chat/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
+            <state relative-caret-position="391">
               <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
               <folding>
                 <element signature="e#634#666#0" expanded="true" />
@@ -91,8 +146,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="18" column="78" selection-start-line="18" selection-start-column="78" selection-end-line="18" selection-end-column="78" />
+            <state relative-caret-position="266">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -112,18 +167,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="200" lean-forward="true" selection-start-line="200" selection-end-line="200" />
+            <state relative-caret-position="1938">
+              <caret line="134" column="43" selection-start-line="134" selection-start-column="43" selection-end-line="134" selection-end-column="43" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <marker date="1546955354155" expanded="true" signature="5602:5608" ph="..." />
-                <marker date="1546955354155" expanded="true" signature="5735:5739" ph="..." />
-                <marker date="1546955354155" expanded="true" signature="6476:6524" ph="..." />
-                <marker date="1546955354155" expanded="true" signature="6732:6995" ph="..." />
+                <marker date="1547044384805" expanded="true" signature="5602:5608" ph="..." />
+                <marker date="1547044384805" expanded="true" signature="5735:5739" ph="..." />
+                <marker date="1547044384805" expanded="true" signature="6476:6524" ph="..." />
+                <marker date="1547044384805" expanded="true" signature="6732:6988" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/group_chat/app/token.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -131,11 +195,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-              <folding>
-                <element signature="e#1#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="269">
+              <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -167,17 +228,17 @@
         <option value="$PROJECT_DIR$/group_chat/app/token.py" />
         <option value="$PROJECT_DIR$/group_chat/app/admin.py" />
         <option value="$PROJECT_DIR$/group_chat/app/templates/app/acc_active_email.html" />
-        <option value="$PROJECT_DIR$/group_chat/app/models.py" />
         <option value="$PROJECT_DIR$/group_chat/app/serializers.py" />
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py" />
         <option value="$PROJECT_DIR$/group_chat/group_chat/urls.py" />
         <option value="$PROJECT_DIR$/group_chat/app/urls.py" />
-        <option value="$PROJECT_DIR$/group_chat/group_chat/settings.py" />
         <option value="$PROJECT_DIR$/group_chat/app/views.py" />
+        <option value="$PROJECT_DIR$/group_chat/app/models.py" />
+        <option value="$PROJECT_DIR$/group_chat/group_chat/settings.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1350" />
@@ -198,20 +259,12 @@
             <path>
               <item name="Group_Chat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Group_Chat" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="group_chat" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Group_Chat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Group_Chat" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
-              <item name="Lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Group_Chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Group_Chat" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-              <item name="Lib" type="462c0819:PsiDirectoryNode" />
-              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -250,10 +303,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="10" y="20" width="1350" height="690" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18601191" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19054878" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -264,7 +317,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4985119" visible="true" weight="0.3409836" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4985119" visible="true" weight="0.37410071" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5014881" side_tool="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -317,13 +370,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/app/token.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/media/member_pic/me_EdBm6Sq.jpeg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -340,6 +386,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/group_chat/group_chat/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+          <folding>
+            <element signature="e#634#666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -350,6 +406,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/group_chat/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1938">
+          <caret line="134" column="43" selection-start-line="134" selection-start-column="43" selection-end-line="134" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1547044384805" expanded="true" signature="5602:5608" ph="..." />
+            <marker date="1547044384805" expanded="true" signature="5735:5739" ph="..." />
+            <marker date="1547044384805" expanded="true" signature="6476:6524" ph="..." />
+            <marker date="1547044384805" expanded="true" signature="6732:6988" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/group_chat/app/token.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/templates/app/acc_active_email.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -357,30 +434,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/group_chat/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
-          <folding>
-            <element signature="e#634#666#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding>
-            <element signature="e#1#29#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="269">
+          <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="18" column="78" selection-start-line="18" selection-start-column="78" selection-end-line="18" selection-end-column="78" />
+        <state relative-caret-position="266">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
@@ -389,22 +453,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/group_chat/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="200" lean-forward="true" selection-start-line="200" selection-end-line="200" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1546955354155" expanded="true" signature="5602:5608" ph="..." />
-            <marker date="1546955354155" expanded="true" signature="5735:5739" ph="..." />
-            <marker date="1546955354155" expanded="true" signature="6476:6524" ph="..." />
-            <marker date="1546955354155" expanded="true" signature="6732:6995" ph="..." />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
         </state>
       </provider>
     </entry>

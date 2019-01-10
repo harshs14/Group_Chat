@@ -2,9 +2,11 @@ from django.urls import re_path, path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.documentation import include_docs_urls
 
 
 urlpatterns = [
+
     re_path(r'^$', views.Register.as_view(), name='register'),
     re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
             views.Activate.as_view(), name='activate'),
@@ -16,8 +18,8 @@ urlpatterns = [
     re_path(r'groupprofile/(?P<id>[0-9]+)/$', views.GroupProfile.as_view(), name='group_profile'),
     re_path(r'logout/$',views.Logout.as_view(), name='logout'),
     # path('addmembers/<int:pk>/', views.AddMember.as_view(), name='add_member'),
-    re_path(r'contactlist/$', views.ContactList.as_view(), name='contact_list')
-
+    re_path(r'contactlist/$', views.ContactList.as_view(), name='contact_list'),
+    re_path(r'^docs/', include_docs_urls(title='My API title'))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
