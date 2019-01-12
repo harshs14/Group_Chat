@@ -16,14 +16,13 @@ class User(AbstractUser):
 
 class Group(models.Model):
 
-    g_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, blank=True, null=True)
     avatar = models.ImageField(upload_to='group_pic', default='profile.png', null=True)
     members = models.ManyToManyField(User, related_name='%(class)s_member_of_group', null=True)
     admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='%(class)s_admin_of_group', null=True)
 
     def __str__(self):
-        return str(self.g_id)
+        return "%s has created group: %s" % (self.admin, self.name)
 
 
 class Message(models.Model):
