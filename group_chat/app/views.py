@@ -162,15 +162,13 @@ class CreateGroup(generics.ListCreateAPIView):
     def post(self, request, *args, **kwargs):
 
         serializer = GroupSerializer(data=request.data)
+        user_obj = self.request.user
 
         if serializer.is_valid():
             serializer.save(admin=self.request.user)
-            g_id = serializer.validated_data.get('g_id')
-            print(g_id, "hello")
-            group = Group.objects.get(g_id=g_id)
-            print(group, "hello")
-            group.members.add(self.request.user)
-            # print(group.members)
+            g_id = serializer.data.get('id')
+            group = Group.objects.get(pk=g_id)
+            group.members.add(user_obj)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
