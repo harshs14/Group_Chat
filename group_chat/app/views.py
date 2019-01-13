@@ -1,8 +1,7 @@
 import json
 from rest_framework import generics, permissions, status, mixins
 from django.contrib.auth.models import User
-from .serializers import UserRegisterSerializer, UserLoginSerializer, UserProfileSerializer, GroupSerializer, \
-    AddMemberSerializer
+from .serializers import *
 from rest_framework.response import Response
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -18,7 +17,7 @@ from django.shortcuts import render, redirect
 from rest_framework import viewsets
 from django.http import HttpResponse
 from rest_framework.views import APIView
-from . models import Message, Group, User
+from . models import *
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
 # -----------------------User Registration/Signup-------------------------------------------------------------------
@@ -193,39 +192,60 @@ class GroupProfile (generics.GenericAPIView,
     def delete(self, request, id, *args, **kwargs):
         return self.destroy(request, id)
 
+#
+# class ContactList(APIView):
+#
+#     def post(self, request, *args, **kwargs):
+#
+#         data = json.loads(request.body)
+#         contact_list = data['number']
+#         for i in contact_list:
+#             j = User.objects.filter(phone_number=i)
+#         return Response({'user_list': j})
+#
+#
+# class AddMember(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.DestroyModelMixin, mixins.RetrieveModelMixin):
+#
+#     queryset = Group.objects.all()
+#     serializer_class = AddMemberSerializer
+#     permission_classes = (permissions.IsAuthenticated, )
+#     lookup_url_kwarg = 'id'
+#
+#     def put(self, request, id, *args, **kwargs):
+#
+#         member = Group.members.add(User.objects.get(phone_number=request.data))
+#         serializer = AddMemberSerializer(data=request.data)
+#
+#         if serializer.is_valid():
+#             serializer.save(members=member)
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#
+#     def get(self, request, id, *args, **kwargs):
+#         return self.retrieve(request, id)
 
-class ContactList(APIView):
 
-    def post(self, request, *args, **kwargs):
+class Message(generics.GenericAPIView, mixins.CreateModelMixin, mixins.DestroyModelMixin, mixins.RetrieveModelMixin):
 
-        data = json.loads(request.body)
-        contact_list = data['number']
-        for i in contact_list:
-            j = User.objects.filter(phone_number=i)
-        return Response({'user_list': j})
+    queryset = Message.objects.all()
+    lookup_url_kwarg = 'g_id'
+    serializer_class = MessageSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    parser_classes = (MultiPartParser, FormParser, JSONParser)
 
+    def get(self, request, g_id, *args, **kwargs):
+        return self.retrieve(request, g_id)
 
-class AddMember(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.DestroyModelMixin, mixins.RetrieveModelMixin):
+    def post(self, request, g_id, *args, **kwargs):
 
-    queryset = Group.objects.all()
-    serializer_class = AddMemberSerializer
-    permission_classes = (permissions.IsAuthenticated, )
-    lookup_url_kwarg = 'id'
-
-    def put(self, request, id, *args, **kwargs):
-
-        member = Group.members.add(User.objects.get(phone_number=request.data))
-        serializer = AddMemberSerializer(data=request.data)
+        serializer = GroupSerializer(data=request.data)
+        # user_obj = self.request.user
 
         if serializer.is_valid():
-            serializer.save(members=member)
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def get(self, request, id, *args, **kwargs):
-        return self.retrieve(request, id)
-
-
+            serializer.save(messaged_by=self.request.user, group=g_id)
+            # g_id = serializer.data.get('id')
+            # group = Group.objects.get(pk=g_id)
+        return self.create(request, g_id)
 
 
 class Logout(APIView):
