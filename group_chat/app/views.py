@@ -225,7 +225,7 @@ class GroupProfile (generics.GenericAPIView,
 #         return self.retrieve(request, id)
 
 
-class Message(generics.GenericAPIView, mixins.ListModelMixin):
+class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
 
     queryset = Message.objects.all()
     lookup_url_kwarg = 'g_id'
@@ -242,9 +242,15 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin):
             serializer.save(messaged_by=self.request.user, group=group)
         return Response({'g_id': g_id})
 
-    def get(self, request, g_id, *args, **kwargs):
-        return self.list(request, g_id)
+    def get(self, request, g_id, m_id=None, *args, **kwargs):
 
+        if m_id:
+            return self.retrieve(request, g_id, m_id)
+        else:
+            return self.list(request, g_id)
+
+    def delete(self, request, g_id, m_id, *args, **kwargs):
+        return self.destroy(request, g_id, m_id)
 
 class Logout(APIView):
 
