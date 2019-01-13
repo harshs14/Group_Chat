@@ -55,3 +55,11 @@ class AddMemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = ('name', 'members',)
+
+
+class MessageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Message
+        fields = ('message', 'messaged_by', 'file_message', 'time', 'group')
+        read_only_fields = ('time', 'messaged_by', 'group')
