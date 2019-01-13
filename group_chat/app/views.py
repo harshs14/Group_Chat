@@ -19,6 +19,7 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from . models import *
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
+from .permissions import *         
 
 # -----------------------User Registration/Signup-------------------------------------------------------------------
 class Register(APIView):
@@ -180,7 +181,7 @@ class GroupProfile (generics.GenericAPIView,
     queryset = Group.objects.all()
     lookup_url_kwarg = 'id'
     serializer_class = GroupSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsGroupAdminOrReadOnly)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def get(self, request, id, *args, **kwargs):
@@ -228,10 +229,17 @@ class GroupProfile (generics.GenericAPIView,
 class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
 
     queryset = Message.objects.all()
-    lookup_url_kwarg = 'g_id'
+    lookup_field = 'id'
     serializer_class = MessageSerializer
     permission_classes = (permissions.IsAuthenticated,)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
+
+    def get(self, request, g_id, id=None, *args, **kwargs):
+
+        if id:
+            return self.retrieve(request, g_id, id)
+        else:
+            return self.list(request, g_id)
 
     def post(self, request, g_id, *args, **kwargs):
 
@@ -240,17 +248,15 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
         if serializer.is_valid():
             group = Group.objects.get(pk=g_id)
             serializer.save(messaged_by=self.request.user, group=group)
-        return Response({'g_id': g_id})
+        return Response(status=status.HTTP_200_OK)
 
-    def get(self, request, g_id, m_id=None, *args, **kwargs):
+    def delete(self, request, g_id, id=None, *args, **kwargs):
 
-        if m_id:
-            return self.retrieve(request, g_id, m_id)
+        if id:
+            return self.destroy(request, g_id, id)
         else:
-            return self.list(request, g_id)
+            pass
 
-    def delete(self, request, g_id, m_id, *args, **kwargs):
-        return self.destroy(request, g_id, m_id)
 
 class Logout(APIView):
 
@@ -258,5 +264,3 @@ class Logout(APIView):
 
         logout(request)
         return Response({'info': 'logged out'})
-
-
