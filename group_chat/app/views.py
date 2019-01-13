@@ -202,9 +202,9 @@ class GroupProfile (generics.GenericAPIView,
 #         for i in contact_list:
 #             j = User.objects.filter(phone_number=i)
 #         return Response({'user_list': j})
-#
-#
-# class AddMember(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.DestroyModelMixin, mixins.RetrieveModelMixin):
+
+
+# class AddMember(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.DestroyModelMixin,mixins.RetrieveModelMixin):
 #
 #     queryset = Group.objects.all()
 #     serializer_class = AddMemberSerializer
@@ -225,7 +225,7 @@ class GroupProfile (generics.GenericAPIView,
 #         return self.retrieve(request, id)
 
 
-class Message(APIView):
+class Message(generics.GenericAPIView, mixins.ListModelMixin):
 
     queryset = Message.objects.all()
     lookup_url_kwarg = 'g_id'
@@ -236,14 +236,14 @@ class Message(APIView):
     def post(self, request, g_id, *args, **kwargs):
 
         serializer = MessageSerializer(data=request.data)
-        # user_obj = self.request.user
 
         if serializer.is_valid():
             group = Group.objects.get(pk=g_id)
             serializer.save(messaged_by=self.request.user, group=group)
-            # g_id = serializer.data.get('id')
-            # group = Group.objects.get(pk=g_id)
         return Response({'g_id': g_id})
+
+    def get(self, request, g_id, *args, **kwargs):
+        return self.list(request, g_id)
 
 
 class Logout(APIView):
