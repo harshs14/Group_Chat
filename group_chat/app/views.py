@@ -21,7 +21,8 @@ from . models import *
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from .permissions import *         
 
-# -----------------------User Registration/Signup-------------------------------------------------------------------
+
+# -----------------------User Registration/Signup------------------------------------------------------------------
 class Register(APIView):
     queryset = User.objects.all()
     serializer_class = UserRegisterSerializer
@@ -142,7 +143,7 @@ class UserProfile(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.Retri
     queryset = User.objects.all()
     lookup_field = 'id'
     serializer_class = UserProfileSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def get(self, request, id, *args, **kwargs):
