@@ -1,4 +1,5 @@
 from rest_framework import permissions
+from .models import *
 
 
 class IsGroupAdminOrReadOnly(permissions.BasePermission):
@@ -21,13 +22,6 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         return obj.username == request.user.username
 
 
-class IsGroupMember(permissions.BasePermission):
-
-    def has_object_permission(self, request, view, obj):
-
-        return obj.members == request.user.username
-
-
 class IsMessageOwner(permissions.BasePermission):
 
     def has_object_permission(self, request, view, obj):
@@ -37,3 +31,14 @@ class IsMessageOwner(permissions.BasePermission):
 
         return obj.messaged_by == request.user
 
+
+class IsGroupMember(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+
+        user_obj = request.user
+
+        member = Group.objects.filter(members=user_obj)
+
+        if member:
+            return True
