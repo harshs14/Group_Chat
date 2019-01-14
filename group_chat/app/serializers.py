@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Message, Group
+from .models import *
 from rest_framework.validators import UniqueValidator
 
 from django.contrib.auth import get_user_model
@@ -60,6 +60,6 @@ class AddMemberSerializer(serializers.ModelSerializer):
 class MessageSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Message
+        model = GroupMessage
         fields = ('id', 'message', 'messaged_by', 'file_message', 'time', 'group')
         read_only_fields = ('id', 'time', 'messaged_by', 'group')
