@@ -153,7 +153,7 @@ class UserProfile(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.Retri
         return self.update(request, id)
 
 
-class CreateGroup(generics.ListCreateAPIView):
+class Groups(generics.GenericAPIView, mixins.ListModelMixin):
 
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
@@ -172,6 +172,9 @@ class CreateGroup(generics.ListCreateAPIView):
             group.members.add(user_obj)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request)
 
 
 class GroupProfile (generics.GenericAPIView,
