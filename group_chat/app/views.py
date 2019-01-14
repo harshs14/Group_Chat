@@ -232,7 +232,7 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
     queryset = Message.objects.all()
     lookup_field = 'id'
     serializer_class = MessageSerializer
-    permission_classes = (permissions.IsAuthenticated, IsMessageOwner)
+    permission_classes = (permissions.IsAuthenticated, IsMessageOwner, IsGroupMember)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def get(self, request, g_id, id=None, *args, **kwargs):
