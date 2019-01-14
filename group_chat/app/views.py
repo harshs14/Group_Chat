@@ -174,6 +174,8 @@ class Groups(generics.GenericAPIView, mixins.ListModelMixin):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
+        user_obj = self.request.user
+
         return self.list(request)
 
 
@@ -197,7 +199,7 @@ class GroupProfile (generics.GenericAPIView,
     def delete(self, request, id, *args, **kwargs):
         return self.destroy(request, id)
 
-#
+
 # class ContactList(APIView):
 #
 #     def post(self, request, *args, **kwargs):
@@ -232,18 +234,11 @@ class GroupProfile (generics.GenericAPIView,
 
 class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
 
-    queryset = Message.objects.all()
+    queryset = GroupMessage.objects.all()
     lookup_field = 'id'
     serializer_class = MessageSerializer
-    permission_classes = (permissions.IsAuthenticated, IsMessageOwner, IsGroupMember)
+    permission_classes = (permissions.IsAuthenticated, IsMessageOwner)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
-
-    def get(self, request, g_id, id=None, *args, **kwargs):
-
-        if id:
-            return self.retrieve(request, g_id, id)
-        else:
-            return self.list(request, g_id)
 
     def post(self, request, g_id, *args, **kwargs):
 
@@ -253,6 +248,18 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
             group = Group.objects.get(pk=g_id)
             serializer.save(messaged_by=self.request.user, group=group)
         return Response(status=status.HTTP_200_OK)
+
+    # def get(self, request, g_id, id=None, *args, **kwargs):
+    #
+    #     if id:
+    #         return self.retrieve(self, request, g_id, id)
+    #     else:
+    #         return self.list(self, request, g_id)
+
+    def get(self, request, g_id, *args, **kwargs):
+        m = GroupMessage.objects.filter(group=g_id)
+        serializer = MessageSerializer(m, many=True)
+        return Response(serializer.data)
 
     def delete(self, request, g_id, id=None, *args, **kwargs):
 

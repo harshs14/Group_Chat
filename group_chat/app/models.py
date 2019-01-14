@@ -25,7 +25,7 @@ class Group(models.Model):
         return "%s has created group: %s" % (self.admin, self.name)
 
 
-class Message(models.Model):
+class GroupMessage(models.Model):
 
     message = models.CharField(max_length=100, null=True)
     messaged_by = models.ForeignKey(User, on_delete=models.CASCADE)
