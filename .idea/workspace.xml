@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f7f0221-5781-4846-a56f-d2348f8f1759" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/group_chat/app/permissions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/app/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/permissions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/group_chat/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,9 +16,9 @@
     <session id="1713823416">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="16" />
+          <entry key="project.closed" value="18" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.1" value="4" />
+          <entry key="project.open.time.1" value="5" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.20" value="1" />
@@ -38,9 +36,9 @@
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.52" value="1" />
-          <entry key="project.open.time.6" value="3" />
+          <entry key="project.open.time.6" value="4" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="30" />
+          <entry key="project.opened" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -63,13 +61,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="27" />
-          <entry key="py" value="9621" />
+          <entry key="py" value="9847" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="27" />
-          <entry key="Python" value="9621" />
+          <entry key="Python" value="9847" />
         </counts>
       </usages-collector>
     </session>
@@ -79,7 +77,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/group_chat/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
+            <state relative-caret-position="391">
               <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
               <folding>
                 <element signature="e#634#666#0" expanded="true" />
@@ -91,12 +89,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/app/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+            <state relative-caret-position="204">
+              <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-                <marker date="1547387289485" expanded="true" signature="1223:1226" ph="..." />
-                <marker date="1547387289485" expanded="true" signature="1461:1652" ph="..." />
+                <marker date="1547462794420" expanded="true" signature="1223:1226" ph="..." />
               </folding>
             </state>
           </provider>
@@ -105,8 +102,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="17" column="99" lean-forward="true" selection-start-line="17" selection-start-column="99" selection-end-line="17" selection-end-column="99" />
+            <state relative-caret-position="221">
+              <caret line="17" column="99" selection-start-line="17" selection-start-column="99" selection-end-line="17" selection-end-column="99" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -135,31 +132,34 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+            <state relative-caret-position="221">
+              <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <marker date="1547389593652" expanded="true" signature="5596:5602" ph="..." />
-                <marker date="1547389593652" expanded="true" signature="5792:5796" ph="..." />
-                <marker date="1547389593652" expanded="true" signature="6788:6836" ph="..." />
-                <marker date="1547389593652" expanded="true" signature="7047:7315" ph="..." />
-                <marker date="1547389593652" expanded="true" signature="7661:7662" ph="..." />
-                <marker date="1547389593652" expanded="true" signature="8696:8697" ph="..." />
-                <marker date="1547389593652" expanded="true" signature="8961:8966" ph="..." />
-                <marker date="1547389593652" expanded="true" signature="9124:9125" ph="..." />
+                <marker date="1547464246384" expanded="true" signature="5623:5629" ph="..." />
+                <marker date="1547464246384" expanded="true" signature="5819:5823" ph="..." />
+                <marker date="1547464246384" expanded="true" signature="6815:6863" ph="..." />
+                <marker date="1547464246384" expanded="true" signature="7074:7342" ph="..." />
+                <marker date="1547464246384" expanded="true" signature="7688:7689" ph="..." />
+                <marker date="1547464246384" expanded="true" signature="8723:8724" ph="..." />
+                <marker date="1547464246384" expanded="true" signature="8988:8993" ph="..." />
+                <marker date="1547464246384" expanded="true" signature="9151:9152" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/group_chat/app/permissions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="28" />
+            <state relative-caret-position="310">
+              <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+              <folding>
+                <marker date="1547464907355" expanded="true" signature="333:472" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,8 +176,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
+            <state>
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -216,14 +215,14 @@
         <option value="$PROJECT_DIR$/group_chat/app/admin.py" />
         <option value="$PROJECT_DIR$/group_chat/group_chat/settings.py" />
         <option value="$PROJECT_DIR$/group_chat/app/models.py" />
-        <option value="$PROJECT_DIR$/group_chat/app/serializers.py" />
         <option value="$PROJECT_DIR$/group_chat/app/urls.py" />
-        <option value="$PROJECT_DIR$/group_chat/app/permissions.py" />
+        <option value="$PROJECT_DIR$/group_chat/app/serializers.py" />
         <option value="$PROJECT_DIR$/group_chat/app/views.py" />
+        <option value="$PROJECT_DIR$/group_chat/app/permissions.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -234,6 +233,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -261,11 +261,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../django-rest-api-snippets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -294,7 +293,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17782739" />
@@ -352,6 +351,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/group_chat/group_chat/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+          <folding>
+            <element signature="e#634#666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/group_chat/app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="99" selection-start-line="17" selection-start-column="99" selection-end-line="17" selection-end-column="99" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -376,6 +395,15 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/group_chat/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/templates/app/acc_active_email.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -383,69 +411,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/group_chat/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
-          <folding>
-            <element signature="e#634#666#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
+        <state relative-caret-position="204">
+          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-            <marker date="1547387289485" expanded="true" signature="1223:1226" ph="..." />
-            <marker date="1547387289485" expanded="true" signature="1461:1652" ph="..." />
+            <marker date="1547462794420" expanded="true" signature="1223:1226" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/app/urls.py">
+    <entry file="file://$PROJECT_DIR$/group_chat/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="17" column="99" lean-forward="true" selection-start-line="17" selection-start-column="99" selection-end-line="17" selection-end-column="99" />
+        <state relative-caret-position="221">
+          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1547464246384" expanded="true" signature="5623:5629" ph="..." />
+            <marker date="1547464246384" expanded="true" signature="5819:5823" ph="..." />
+            <marker date="1547464246384" expanded="true" signature="6815:6863" ph="..." />
+            <marker date="1547464246384" expanded="true" signature="7074:7342" ph="..." />
+            <marker date="1547464246384" expanded="true" signature="7688:7689" ph="..." />
+            <marker date="1547464246384" expanded="true" signature="8723:8724" ph="..." />
+            <marker date="1547464246384" expanded="true" signature="8988:8993" ph="..." />
+            <marker date="1547464246384" expanded="true" signature="9151:9152" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/permissions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+        <state relative-caret-position="310">
+          <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1547389593652" expanded="true" signature="5596:5602" ph="..." />
-            <marker date="1547389593652" expanded="true" signature="5792:5796" ph="..." />
-            <marker date="1547389593652" expanded="true" signature="6788:6836" ph="..." />
-            <marker date="1547389593652" expanded="true" signature="7047:7315" ph="..." />
-            <marker date="1547389593652" expanded="true" signature="7661:7662" ph="..." />
-            <marker date="1547389593652" expanded="true" signature="8696:8697" ph="..." />
-            <marker date="1547389593652" expanded="true" signature="8961:8966" ph="..." />
-            <marker date="1547389593652" expanded="true" signature="9124:9125" ph="..." />
+            <marker date="1547464907355" expanded="true" signature="333:472" ph="..." />
           </folding>
         </state>
       </provider>
