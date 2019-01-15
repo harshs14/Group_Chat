@@ -153,7 +153,7 @@ class UserProfile(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.Retri
         return self.update(request, id)
 
 
-class Groups(generics.GenericAPIView, mixins.ListModelMixin):
+class CreateGroups(generics.GenericAPIView, mixins.ListModelMixin):
 
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
@@ -267,6 +267,21 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
             return self.destroy(request, g_id, id)
         else:
             pass
+
+
+class GroupView(generics.GenericAPIView):
+
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    parser_classes = (MultiPartParser, FormParser, JSONParser)
+
+    def get(self, request, *args, **kwargs):
+
+        user_obj = request.user
+        g = Group.objects.filter(members=user_obj)
+        serializer = GroupSerializer(g, many=True)
+        return Response(serializer.data)
 
 
 class Logout(APIView):
