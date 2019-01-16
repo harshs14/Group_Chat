@@ -237,7 +237,7 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
     queryset = GroupMessage.objects.all()
     lookup_field = 'id'
     serializer_class = MessageSerializer
-    permission_classes = (permissions.IsAuthenticated, IsMessageOwner)
+    permission_classes = (permissions.IsAuthenticated, IsMessageOwner, IsGroupMember)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def post(self, request, g_id, *args, **kwargs):
@@ -245,9 +245,14 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
         serializer = MessageSerializer(data=request.data)
 
         if serializer.is_valid():
+            user_obj = request.user
             group = Group.objects.get(pk=g_id)
-            serializer.save(messaged_by=self.request.user, group=group)
-        return Response(status=status.HTTP_200_OK)
+            member = Group.objects.filter(members=user_obj)
+            if member == group:
+                serializer.save(messaged_by=user_obj, group=group)
+                return Response(status=status.HTTP_200_OK)
+            else:
+                return Response({'info': 'not allowed'})
 
     # def get(self, request, g_id, id=None, *args, **kwargs):
     #
@@ -256,10 +261,17 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
     #     else:
     #         return self.list(self, request, g_id)
 
-    def get(self, request, g_id, *args, **kwargs):
-        m = GroupMessage.objects.filter(group=g_id)
-        serializer = MessageSerializer(m, many=True)
-        return Response(serializer.data)
+    def get(self, request, g_id, id=None, *args, **kwargs):
+
+        user_obj = request.user
+        group = Group.objects.get(pk=g_id)
+        member = Group.objects.filter(members=user_obj)
+        if member == group:
+            group_messages = GroupMessage.objects.filter(group=g_id)
+            serializer = MessageSerializer(group_messages, many=True)
+            return Response(serializer.data)
+        else:
+            return Response({'info': 'not allowed'})
 
     def delete(self, request, g_id, id=None, *args, **kwargs):
 

@@ -28,32 +28,23 @@ class IsMessageOwner(permissions.BasePermission):
 
         return obj.messaged_by == request.user
 
-#
-# class IsGroupMessage(permissions.BasePermission):
-#
-#     def has_object_permission(self, request, view, obj):
-#
-#         g = Group.objects.get.all()
-#
-#         return obj.group == g
+
+class IsGroupMember(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+
+        user_obj = request.user
+
+        g = Group.objects.all()
+
+        member = Group.objects.filter(members=user_obj)
+
+        if member:
+            return True
+        else:
+            return False
 
 
-# class IsGroupMember(permissions.BasePermission):
-#
-#     def has_permission(self, request, view):
-#
-#         user_obj = request.user
-#
-#         member = Group.objects.filter(members=user_obj)
-#
-#         if member:
-#             return True
-#         else:
-#             return False
-
-#
-#
-#
 # class IsInGroup(permissions.BasePermission):
 #
 #     def has_object_permission(self, request, view, obj):
