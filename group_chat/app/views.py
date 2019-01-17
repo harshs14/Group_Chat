@@ -247,25 +247,24 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
         if serializer.is_valid():
             user_obj = request.user
             group = Group.objects.get(pk=g_id)
+            g = Group.objects.filter(pk=g_id)
             member = Group.objects.filter(members=user_obj)
-            if member == group:
+            for x in member:
+                if g == x:
+                    a = 1
+            if a == 1:
                 serializer.save(messaged_by=user_obj, group=group)
                 return Response(status=status.HTTP_200_OK)
             else:
                 return Response({'info': 'not allowed'})
-
-    # def get(self, request, g_id, id=None, *args, **kwargs):
-    #
-    #     if id:
-    #         return self.retrieve(self, request, g_id, id)
-    #     else:
-    #         return self.list(self, request, g_id)
 
     def get(self, request, g_id, id=None, *args, **kwargs):
 
         user_obj = request.user
         group = Group.objects.get(pk=g_id)
         member = Group.objects.filter(members=user_obj)
+        # print(group,'hi')
+        # print(member,'hi')
         if member == group:
             group_messages = GroupMessage.objects.filter(group=g_id)
             serializer = MessageSerializer(group_messages, many=True)
