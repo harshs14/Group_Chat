@@ -20,7 +20,7 @@ from rest_framework.views import APIView
 from . models import *
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from .permissions import *         
-
+from rest_framework import filters
 
 # -----------------------User Registration/Signup------------------------------------------------------------------
 class Register(APIView):
@@ -281,12 +281,14 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
             pass
 
 
-class GroupView(generics.GenericAPIView):
+class GroupList(generics.GenericAPIView):
 
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = (permissions.IsAuthenticated,)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = 'name'
 
     def get(self, request, *args, **kwargs):
 
