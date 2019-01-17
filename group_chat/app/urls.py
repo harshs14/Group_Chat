@@ -21,7 +21,7 @@ urlpatterns = [
     # re_path(r'^contactlist/$', views.ContactList.as_view(), name='contact_list'),
     re_path(r'^group/(?P<g_id>[0-9]+)/$', views.Message.as_view(), name='message'),
     re_path(r'^group/(?P<g_id>[0-9]+)/(?P<id>[0-9]+)/$', views.Message.as_view(), name='message_detail'),
-    re_path(r'^group/$', views.GroupView.as_view(), name='group'),
+    re_path(r'^group/$', views.GroupList.as_view(), name='group'),
     re_path(r'^docs/', include_docs_urls(title='My API title'))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
