@@ -249,10 +249,8 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
             group = Group.objects.get(pk=g_id)
             g = Group.objects.filter(pk=g_id)
             member = Group.objects.filter(members=user_obj)
-            for x in member:
-                if g == x:
-                    a = 1
-            if a == 1:
+            y = set(g).intersection(set(member))
+            if y:
                 serializer.save(messaged_by=user_obj, group=group)
                 return Response(status=status.HTTP_200_OK)
             else:
@@ -261,11 +259,10 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
     def get(self, request, g_id, id=None, *args, **kwargs):
 
         user_obj = request.user
-        group = Group.objects.get(pk=g_id)
+        g = Group.objects.filter(pk=g_id)
         member = Group.objects.filter(members=user_obj)
-        # print(group,'hi')
-        # print(member,'hi')
-        if member == group:
+        y = set(g).intersection(set(member))
+        if y:
             group_messages = GroupMessage.objects.filter(group=g_id)
             serializer = MessageSerializer(group_messages, many=True)
             return Response(serializer.data)
