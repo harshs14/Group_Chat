@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'app',
     'phonenumber_field',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'group_chat.wsgi.application'
+
+ASGI_APPLICATION = "auction.routing.application"
 
 
 # Database
