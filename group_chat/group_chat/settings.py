@@ -25,7 +25,7 @@ SECRET_KEY = '4af@ml_4@u9*e(1gi*so^^ebtaq5g%hw592ff7kv_qgxse9$b&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['b9a920c6.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['6ecb03f9.ngrok.io', '127.0.0.1']
 
 
 # Application definition
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'app',
     'phonenumber_field',
     'channels',
-]
+   ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,8 +73,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'group_chat.wsgi.application'
 
-ASGI_APPLICATION = "auction.routing.application"
+ASGI_APPLICATION = 'group_chat.routing.application'
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis-server-name", 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -198,3 +206,5 @@ EMAIL_HOST_PASSWORD = 'onlineauctionhpi'
 EMAIL_PORT = 587
 
 AUTH_USER_MODEL = 'app.User'
+
+APPEND_SLASH = False

@@ -3,7 +3,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.documentation import include_docs_urls
-
+from django.conf.urls import url
 
 urlpatterns = [
 
@@ -12,9 +12,9 @@ urlpatterns = [
             views.Activate.as_view(), name='activate'),
     # re_path(r'^home/$', views.Home.as_view(), name='home'),
     re_path(r'^login/$', views.Login.as_view(), name='login'),
-    re_path(r'^profile/(?P<id>[0-9]+)/$', views.UserProfile.as_view(), name='user_profile'),
+    re_path(r'^profile/(?P<id>[0-9]+)$', views.UserProfile.as_view(), name='user_profile'),
     # re_path(r'^createprofile/$', views.CreateUserProfile.as_view(), name='create_profile'),
-    re_path(r'^creategroup/$', views.CreateGroups.as_view(), name='create_group'),
+    url(r'^creategroup/$', views.CreateGroups.as_view(), name='create_group'),
     re_path(r'^groupprofile/(?P<id>[0-9]+)/$', views.GroupProfile.as_view(), name='group_profile'),
     re_path(r'^logout/$', views.Logout.as_view(), name='logout'),
     # re_path(r'^addmembers/(?P<id>[0-9]+)/', views.AddMember.as_view(), name='add_member'),
