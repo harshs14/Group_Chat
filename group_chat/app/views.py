@@ -115,7 +115,7 @@ class Login(generics.CreateAPIView):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return Response({'info': 'logged in', 'user_id': user.id}, status=status.HTTP_200_OK)
+                return Response({'user_id': user.id}, status=status.HTTP_200_OK)
             else:
                 return Response({'info': 'verify email first'}, status=status.HTTP_200_OK)
         else:
@@ -143,7 +143,7 @@ class UserProfile(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.Retri
     queryset = User.objects.all()
     lookup_field = 'id'
     serializer_class = UserProfileSerializer
-    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
+    # permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def get(self, request, id, *args, **kwargs):
@@ -174,7 +174,6 @@ class CreateGroups(generics.GenericAPIView, mixins.ListModelMixin):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
-        user_obj = self.request.user
 
         return self.list(request)
 
