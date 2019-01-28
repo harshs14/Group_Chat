@@ -25,7 +25,7 @@ SECRET_KEY = '4af@ml_4@u9*e(1gi*so^^ebtaq5g%hw592ff7kv_qgxse9$b&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['6ecb03f9.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['182b8c26.ngrok.io', '127.0.0.1', '192.168.100.104']
 
 
 # Application definition
@@ -207,4 +207,3 @@ EMAIL_PORT = 587
 
 AUTH_USER_MODEL = 'app.User'
 
-APPEND_SLASH = False

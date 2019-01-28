@@ -8,7 +8,6 @@ class GroupMessageConsumer(AsyncJsonWebsocketConsumer):
         if self.scope["user"].is_anonymous:
             print("anonymous")
             await self.close()
-
         else:
             print("accepted")
             await self.accept()
