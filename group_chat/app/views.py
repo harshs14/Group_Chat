@@ -121,29 +121,13 @@ class Login(generics.CreateAPIView):
         else:
             return Response({'info': 'wrong credentials'}, status=status.HTTP_200_OK)
 
-#
-# class CreateUserProfile(generics.ListCreateAPIView):
-#
-#     queryset = User.objects.all()
-#     serializer_class = UserProfileSerializer
-#     permission_classes = (permissions.IsAuthenticated,)
-#
-#     def post(self, request, *args, **kwargs):
-#
-#         serializer = UserProfileSerializer(data=request.data)
-#
-#         if serializer.is_valid():
-#             serializer.save(user=self.request.user)
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 class UserProfile(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.RetrieveModelMixin):
 
     queryset = User.objects.all()
     lookup_field = 'id'
     serializer_class = UserProfileSerializer
-    # permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def get(self, request, id, *args, **kwargs):
@@ -199,15 +183,18 @@ class GroupProfile (generics.GenericAPIView,
         return self.destroy(request, id)
 
 
-# class ContactList(APIView):
-#
-#     def post(self, request, *args, **kwargs):
-#
-#         data = json.loads(request.body)
-#         contact_list = data['number']
-#         for i in contact_list:
-#             j = User.objects.filter(phone_number=i)
-#         return Response({'user_list': j})
+class ContactList(APIView):
+
+    def post(self, request, *args, **kwargs):
+
+        data = request.data
+        print(data)
+        # contact_list = data['number']
+        # print(contact_list)
+        for key, value in data.iteritems():
+            j = User.objects.filter(phone_number=key)
+            print(j)
+        return Response({'user_list': j})
 
 
 # class AddMember(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.DestroyModelMixin,mixins.RetrieveModelMixin):
