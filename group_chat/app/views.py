@@ -187,14 +187,14 @@ class ContactList(APIView):
 
     def post(self, request, *args, **kwargs):
 
+        a = {}
         data = request.data
-        print(data)
-        # contact_list = data['number']
-        # print(contact_list)
-        for key, value in data.iteritems():
-            j = User.objects.filter(phone_number=key)
-            print(j)
-        return Response({'user_list': j})
+        for key, value in data.items():
+            value = data[key]
+            x = User.objects.filter(phone_number=value)
+            if x:
+                a.update({key: value})
+        return Response(a)
 
 
 # class AddMember(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.DestroyModelMixin,mixins.RetrieveModelMixin):
