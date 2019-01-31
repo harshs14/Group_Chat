@@ -180,8 +180,10 @@ class GroupProfile (viewsets.ModelViewSet):
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def get_serializer_class(self):
-        if self.action == 'add_member':
-            return AddMemberSerializer
+        if self.action == ('add_member' or 'delete_member'):
+            return Add_DeleteMemberSerializer
+        elif self.action == 'delete_member':
+            return Add_DeleteMemberSerializer
         else:
             return GroupSerializer
 
@@ -220,8 +222,10 @@ class GroupProfile (viewsets.ModelViewSet):
                 member_obj = User.objects.get(phone_number=value)
                 print(member_obj)
                 if member_obj:
-                    group.members.add(member_obj)
+                    group.members.remove(member_obj)
             return Response("working")
+
+
 class ContactList(APIView):
 
     def post(self, request, *args, **kwargs):
