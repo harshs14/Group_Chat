@@ -6,7 +6,7 @@ from app.consumers import GroupMessageConsumer
 application = ProtocolTypeRouter({
     "websocket": AuthMiddlewareStack(
         URLRouter([
-           url(r'^group/(?P<g_id>[0-9]+)/$', GroupMessageConsumer),
+           url(r'^test_group/(?P<g_id>[0-9]+)/$', GroupMessageConsumer),
         ])
     ),
 

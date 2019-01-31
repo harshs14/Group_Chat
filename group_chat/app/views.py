@@ -1,4 +1,5 @@
 import json
+from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import generics, permissions, status, mixins
 from django.contrib.auth.models import User
 from .serializers import *
@@ -239,36 +240,6 @@ class ContactList(APIView):
                 a.update({key: value})
         return Response(a)
 
-#
-# class AddMember(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.DestroyModelMixin,mixins.RetrieveModelMixin):
-#
-#     queryset = Group.objects.all()
-#     serializer_class = GroupSerializer
-#     permission_classes = (permissions.IsAuthenticated, IsGroupAdminOrReadOnly)
-#     lookup_url_kwarg = 'g_id'
-#
-#     def put(self, request, g_id, *args, **kwargs):
-#
-#         a = {}
-#         data = request.data
-#         for key, value in data.items():
-#             value = data[key]
-#             user_obj = User.objects.filter(phone_number=value)
-#             print(user_obj)
-#             # a.append(user_obj)
-#         return Response(a)
-#
-#         member = Group.members.add(User.objects.get(phone_number=request.data))
-#         serializer = AddMemberSerializer(data=request.data)
-#
-#         if serializer.is_valid():
-#             serializer.save(members=member)
-#             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#
-#     def get(self, request, g_id, *args, **kwargs):
-#         return self.retrieve(request, g_id)
-
 
 class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
 
@@ -277,6 +248,54 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
     serializer_class = MessageSerializer
     permission_classes = (permissions.IsAuthenticated, IsMessageOwner, IsGroupMember)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
+
+    def post(self, request, g_id, *args, **kwargs):
+
+        serializer = MessageSerializer(data=request.data)
+
+        if serializer.is_valid():
+            user_obj = request.user
+            group = Group.objects.get(pk=g_id)
+            g = Group.objects.filter(pk=g_id)
+            member = Group.objects.filter(members=user_obj)
+            y = set(g).intersection(set(member))
+            if y:
+                serializer.save(messaged_by=user_obj, group=group)
+                return Response(status=status.HTTP_200_OK)
+            else:
+                return Response({'info': 'not allowed'})
+
+    def get(self, request, g_id, id=None, *args, **kwargs):
+
+        user_obj = request.user
+        g = Group.objects.filter(pk=g_id)
+        member = Group.objects.filter(members=user_obj)
+        y = set(g).intersection(set(member))
+        if y:
+            group_messages = GroupMessage.objects.filter(group=g_id)
+            serializer = MessageSerializer(group_messages, many=True)
+            return Response(serializer.data)
+        else:
+            return Response({'info': 'not allowed'})
+
+    def delete(self, request, g_id, id=None, *args, **kwargs):
+
+        if id:
+            return self.destroy(request, g_id, id)
+        else:
+            pass
+
+
+class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
+
+    queryset = GroupMessage.objects.all()
+    lookup_field = 'id'
+    serializer_class = MessageSerializer
+    permission_classes = (permissions.IsAuthenticated, IsMessageOwner, IsGroupMember)
+    parser_classes = (MultiPartParser, FormParser, JSONParser)
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'group_messages.html'
+
 
     def post(self, request, g_id, *args, **kwargs):
 
