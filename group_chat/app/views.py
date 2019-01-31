@@ -2,6 +2,7 @@ import json
 from rest_framework import generics, permissions, status, mixins
 from django.contrib.auth.models import User
 from .serializers import *
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -128,7 +129,7 @@ class UserProfile(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.Retri
     lookup_field = 'id'
     serializer_class = UserProfileSerializer
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
-    parser_classes = (MultiPartParser, FormParser, JSONParser)
+    # parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def get(self, request, id, *args, **kwargs):
         return self.retrieve(request, id)
@@ -137,7 +138,7 @@ class UserProfile(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.Retri
         return self.update(request, id)
 
 
-class CreateGroups(generics.GenericAPIView, mixins.ListModelMixin):
+class CreateGroups(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
 
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
@@ -145,44 +146,82 @@ class CreateGroups(generics.GenericAPIView, mixins.ListModelMixin):
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
-        serializer = GroupSerializer(data=request.data)
-        user_obj = self.request.user
+    def perform_create(self, serializer):
+        serializer.save(admin=self.request.user)
+        g_id = serializer.data.get('id')
+        group = Group.objects.get(pk=g_id)
+        group.members.add(self.request.user)
 
-        if serializer.is_valid():
-            serializer.save(admin=self.request.user)
-            g_id = serializer.data.get('id')
-            group = Group.objects.get(pk=g_id)
-            group.members.add(user_obj)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def post(self, request, *args, **kwargs):
+    #
+    #     serializer = GroupSerializer(data=request.data)
+    #     user_obj = self.request.user
+    #
+    #     if serializer.is_valid():
+    #         serializer.save(admin=self.request.user)
+    #         g_id = serializer.data.get('id')
+    #         group = Group.objects.get(pk=g_id)
+    #         group.members.add(user_obj)
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
-
         return self.list(request)
 
 
-class GroupProfile (generics.GenericAPIView,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    mixins.RetrieveModelMixin):
+class GroupProfile (viewsets.ModelViewSet):
 
     queryset = Group.objects.all()
     lookup_url_kwarg = 'id'
-    serializer_class = GroupSerializer
+    # serializer_class = GroupSerializer
     permission_classes = (permissions.IsAuthenticated, IsGroupAdminOrReadOnly)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
-    def get(self, request, id, *args, **kwargs):
-        return self.retrieve(request, id)
+    def get_serializer_class(self):
+        if self.action == 'add_member':
+            return AddMemberSerializer
+        else:
+            return GroupSerializer
 
-    def put(self, request, id, *args, **kwargs):
-        return self.update(request, id)
+    @action(detail=True, methods=['PUT'])
+    def add_member(self, request, *args, **kwargs):
 
-    def delete(self, request, id, *args, **kwargs):
-        return self.destroy(request, id)
+        serializer = Add_DeleteMemberSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            group = Group.objects.get(id=kwargs['id'])
+            print(group)
+            data = serializer.data.get('member_data')
+            print(data)
+            for key, value in data.items():
+                value = data[key]
+                print(data)
+                member_obj = User.objects.get(phone_number=value)
+                print(member_obj)
+                if member_obj:
+                    group.members.add(member_obj)
+            return Response("working")
 
+    @action(detail=True, methods=['PUT'])
+    def delete_member(self, request, *args, **kwargs):
 
+        serializer = Add_DeleteMemberSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            group = Group.objects.get(id=kwargs['id'])
+            print(group)
+            data = serializer.data.get('member_data')
+            print(data)
+            for key, value in data.items():
+                value = data[key]
+                print(data)
+                member_obj = User.objects.get(phone_number=value)
+                print(member_obj)
+                if member_obj:
+                    group.members.add(member_obj)
+            return Response("working")
 class ContactList(APIView):
 
     def post(self, request, *args, **kwargs):
@@ -196,15 +235,24 @@ class ContactList(APIView):
                 a.update({key: value})
         return Response(a)
 
-
+#
 # class AddMember(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.DestroyModelMixin,mixins.RetrieveModelMixin):
 #
 #     queryset = Group.objects.all()
-#     serializer_class = AddMemberSerializer
-#     permission_classes = (permissions.IsAuthenticated, )
-#     lookup_url_kwarg = 'id'
+#     serializer_class = GroupSerializer
+#     permission_classes = (permissions.IsAuthenticated, IsGroupAdminOrReadOnly)
+#     lookup_url_kwarg = 'g_id'
 #
-#     def put(self, request, id, *args, **kwargs):
+#     def put(self, request, g_id, *args, **kwargs):
+#
+#         a = {}
+#         data = request.data
+#         for key, value in data.items():
+#             value = data[key]
+#             user_obj = User.objects.filter(phone_number=value)
+#             print(user_obj)
+#             # a.append(user_obj)
+#         return Response(a)
 #
 #         member = Group.members.add(User.objects.get(phone_number=request.data))
 #         serializer = AddMemberSerializer(data=request.data)
@@ -214,8 +262,8 @@ class ContactList(APIView):
 #             return Response(serializer.data)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 #
-#     def get(self, request, id, *args, **kwargs):
-#         return self.retrieve(request, id)
+#     def get(self, request, g_id, *args, **kwargs):
+#         return self.retrieve(request, g_id)
 
 
 class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):

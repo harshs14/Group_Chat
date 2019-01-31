@@ -42,19 +42,23 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class GroupSerializer(serializers.ModelSerializer):
+    member_data = serializers.JSONField(allow_null=True)
 
     class Meta:
         model = Group
-        fields = ('id', 'name', 'avatar', 'admin', 'members')
+        fields = ('id', 'name', 'avatar', 'admin', 'members', 'member_data',)
         read_only_fields = ('admin', 'members', 'id')
 
 
-class AddMemberSerializer(serializers.ModelSerializer):
-    members = UserProfileSerializer(many=True)
+class Add_DeleteMemberSerializer(serializers.Serializer):
+    member_data = serializers.JSONField(allow_null=True)
 
     class Meta:
-        model = Group
-        fields = ('name', 'members',)
+        fields = 'member_data'
+
+        # model = Group
+        # fields = ('id', 'name', 'avatar', 'admin', 'members')
+        # read_only_fields = ('admin',  'id', )
 
 
 class MessageSerializer(serializers.ModelSerializer):
