@@ -296,7 +296,6 @@ class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.Retriev
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'group_messages.html'
 
-
     def post(self, request, g_id, *args, **kwargs):
 
         serializer = MessageSerializer(data=request.data)
@@ -309,7 +308,7 @@ class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.Retriev
             y = set(g).intersection(set(member))
             if y:
                 serializer.save(messaged_by=user_obj, group=group)
-                return Response(status=status.HTTP_200_OK)
+                return Response({"group": group, "g_id": g_id}, status=status.HTTP_200_OK)
             else:
                 return Response({'info': 'not allowed'})
 
@@ -321,8 +320,8 @@ class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.Retriev
         y = set(g).intersection(set(member))
         if y:
             group_messages = GroupMessage.objects.filter(group=g_id)
-            serializer = MessageSerializer(group_messages, many=True)
-            return Response(serializer.data)
+            # serializer = MessageSerializer(group_messages, many=True)
+            return Response({'group_messages': group_messages})
         else:
             return Response({'info': 'not allowed'})
 
