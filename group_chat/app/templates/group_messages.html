@@ -1,0 +1,18 @@
+{% load rest_framework %}
+
+
+<html><body>
+<h1>MESSAGES</h1>
+<ul>
+    {% for group_message in group_messages %}
+    <li>{{ group_message.message }}</li>
+    {% endfor %}
+</ul>
+
+<form action="{% url 'test_message' 'g_id=group.pk' %}" method="POST">
+    {% csrf_token %}
+    {% render_form serializer %}
+    <input type="submit" value="Save">
+</form>
+
+</body></html>
