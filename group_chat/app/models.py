@@ -29,7 +29,7 @@ class GroupMessage(models.Model):
 
     message = models.CharField(max_length=100, null=True)
     messaged_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    file_message = models.FileField(upload_to='shared_files', null=True, blank=True)
+    file_message = models.FileField(upload_to='group_file_mesages', null=True, blank=True)
     time = models.DateTimeField(default=timezone.now, null=True)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
 
