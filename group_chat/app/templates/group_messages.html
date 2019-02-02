@@ -6,13 +6,15 @@
 <ul>
     {% for group_message in group_messages %}
     <li>{{ group_message.message }}</li>
+    <li>{{ group_message.file_message }}</li>
     {% endfor %}
 </ul>
 
-<form action="{% url 'test_message' 'g_id=group.pk' %}" method="POST">
+<form action="{% url 'test_message' g_id=test_group.pk %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {% render_form serializer %}
-    <input type="submit" value="Save">
+
+    <input type="submit" value="SUBMIT">
 </form>
 
 </body></html>

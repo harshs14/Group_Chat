@@ -1,4 +1,5 @@
 import json
+from django.shortcuts import get_object_or_404
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import generics, permissions, status, mixins
 from django.contrib.auth.models import User
@@ -298,30 +299,61 @@ class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.Retriev
 
     def post(self, request, g_id, *args, **kwargs):
 
-        serializer = MessageSerializer(data=request.data)
-
-        if serializer.is_valid():
-            user_obj = request.user
-            group = Group.objects.get(pk=g_id)
-            g = Group.objects.filter(pk=g_id)
-            member = Group.objects.filter(members=user_obj)
-            y = set(g).intersection(set(member))
-            if y:
-                serializer.save(messaged_by=user_obj, group=group)
-                return Response({"group": group, "g_id": g_id}, status=status.HTTP_200_OK)
-            else:
-                return Response({'info': 'not allowed'})
-
-    def get(self, request, g_id, id=None, *args, **kwargs):
-
-        user_obj = request.user
+        test_group = get_object_or_404(Group, pk=g_id)
+        group = get_object_or_404(Group, pk=g_id)
+        user_obj = self.request.user
         g = Group.objects.filter(pk=g_id)
         member = Group.objects.filter(members=user_obj)
         y = set(g).intersection(set(member))
         if y:
             group_messages = GroupMessage.objects.filter(group=g_id)
-            # serializer = MessageSerializer(group_messages, many=True)
-            return Response({'group_messages': group_messages})
+            # serializer = MessageSerializer(group_messages)
+            serializer = MessageSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save(messaged_by=user_obj, group=group)
+                a = serializer.validated_data.get('message')
+                b = serializer.validated_data.get('messaged_by')
+                c = serializer.validated_data.get("group")
+                print(a)
+                print(b)
+                print(c)
+                print("hi")
+                # return render(request, "group_messages.html")
+            return render(request, "group_messages.html",
+                          {'group_messages': group_messages, "serializer": serializer, "test_group": test_group,
+                           })
+
+        # if not serializer.is_valid():
+        #     print("no")
+        #     return Response({'serializer': serializer})
+
+    #
+    # if serializer.is_valid():
+    #         user_obj = request.user
+    #
+    #         group = Group.objects.get(pk=g_id)
+    #         g = Group.objects.filter(pk=g_id)
+    #         member = Group.objects.filter(members=user_obj)
+    #         y = set(g).intersection(set(member))
+    #         if y:
+    #             serializer.save(messaged_by=user_obj, group=group)
+    #             return Response({"test_group": group, "serializer": serializer}, status=status.HTTP_200_OK)
+    #         else:
+    #             return Response({'info': 'not allowed'})
+
+    def get(self, request, g_id, id=None, *args, **kwargs):
+
+        user_obj = request.user
+        test_group = get_object_or_404(Group, pk=g_id)
+        g = Group.objects.filter(pk=g_id)
+        member = Group.objects.filter(members=user_obj)
+        y = set(g).intersection(set(member))
+        if y:
+            group_messages = GroupMessage.objects.filter(group=g_id)
+            # gr = get_object_or_404(Group, pk=g_id)
+            # serializer = ProfileSerializer(profile)
+            serializer = MessageSerializer(group_messages)
+            return Response({'group_messages': group_messages, "test_group": test_group, "serializer": serializer})
         else:
             return Response({'info': 'not allowed'})
 
