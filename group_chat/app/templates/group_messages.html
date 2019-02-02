@@ -6,7 +6,7 @@
 <ul>
     {% for group_message in group_messages %}
     <li>{{ group_message.message }}</li>
-    <li>{{ group_message.file_message }}</li>
+    <!--<li>{{ group_message.file_message }}</li>-->
     {% endfor %}
 </ul>
 
@@ -16,5 +16,28 @@
 
     <input type="submit" value="SUBMIT">
 </form>
+
+<script>
+
+var endpoint = 'ws://' + window.location.host + window.location.pathname
+var socket = new WebSocket(endpoint)
+
+socket.onmessage = function(e){
+    console.log("message", e)
+}
+
+socket.onopen = function(e){
+    console.log("open", e)
+}
+
+socket.onerror = function(e){
+    console.log("error", e)
+}
+
+socket.onclose = function(e){
+    console.log("close", e)
+}
+
+</script>
 
 </body></html>
