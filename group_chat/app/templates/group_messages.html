@@ -1,6 +1,4 @@
 {% load rest_framework %}
-
-
 <html><body>
 <h1>MESSAGES</h1>
 <ul>
@@ -19,8 +17,17 @@
 
 <script>
 
-var endpoint = 'ws://' + window.location.host + window.location.pathname
-var socket = new WebSocket(endpoint)
+var loc = window.location;
+var wsStart = 'ws://';
+if (loc.protocol == 'https:'){
+    wsStart = 'wss://'
+}
+var endpoint = wsStart + loc.host + loc.pathname;
+var socket = new WebSocket(endpoint);
+console.log(loc)
+console.log(endpoint)
+console.log(socket)
+
 
 socket.onmessage = function(e){
     console.log("message", e)
@@ -37,7 +44,5 @@ socket.onerror = function(e){
 socket.onclose = function(e){
     console.log("close", e)
 }
-
 </script>
-
 </body></html>
