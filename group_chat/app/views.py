@@ -311,14 +311,6 @@ class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.Retriev
             serializer = MessageSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save(messaged_by=user_obj, group=group)
-                a = serializer.validated_data.get('message')
-                b = serializer.validated_data.get('messaged_by')
-                c = serializer.validated_data.get("group")
-                print(a)
-                print(b)
-                print(c)
-                print("hi")
-                # return render(request, "group_messages.html")
             return render(request, "group_messages.html",
                           {'group_messages': group_messages, "serializer": serializer, "test_group": test_group,
                            })

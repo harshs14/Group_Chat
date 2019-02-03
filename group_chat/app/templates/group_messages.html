@@ -1,48 +1,52 @@
 {% load rest_framework %}
-<html><body>
+
+<html>
+<head>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
 <h1>MESSAGES</h1>
 <ul>
     {% for group_message in group_messages %}
     <li>{{ group_message.message }}</li>
-    <!--<li>{{ group_message.file_message }}</li>-->
     {% endfor %}
 </ul>
 
-<form action="{% url 'test_message' g_id=test_group.pk %}" method="POST" enctype="multipart/form-data">
+<form id='form_data' action="{% url 'test_message' g_id=test_group.pk %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {% render_form serializer %}
-
     <input type="submit" value="SUBMIT">
 </form>
-
 <script>
+    console.log(window.location)
+    var loc = window.location;
+    var wsStart = 'ws://';
+    var endpoint = wsStart + loc.host + loc.pathname;
+    var socket = new WebSocket(endpoint);
+    var form_data = $('#form_data');
+    var msg_input = $('.form-control');
 
-var loc = window.location;
-var wsStart = 'ws://';
-if (loc.protocol == 'https:'){
-    wsStart = 'wss://'
-}
-var endpoint = wsStart + loc.host + loc.pathname;
-var socket = new WebSocket(endpoint);
-console.log(loc)
-console.log(endpoint)
-console.log(socket)
-
-
-socket.onmessage = function(e){
-    console.log("message", e)
-}
-
-socket.onopen = function(e){
-    console.log("open", e)
-}
-
-socket.onerror = function(e){
-    console.log("error", e)
-}
-
-socket.onclose = function(e){
-    console.log("close", e)
-}
+    socket.onmessage = function(e){
+        console.log("message", e)
+    }
+    socket.onopen = function(e){
+        console.log("open", e)
+        form_data.submit(function(event){
+            event.preventDefault()
+            var msg_text = msg_input.val();
+            msg_input.val('')
+            var final_data = {
+                'message': msg_text
+            };
+            socket.send(JSON.stringify(final_data))
+        })
+    }
+    socket.onerror = function(e){
+        console.log("error", e)
+    }
+    socket.onclose = function(e){
+        console.log("close", e)
+    }
 </script>
 </body></html>
