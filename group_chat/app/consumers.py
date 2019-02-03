@@ -25,11 +25,11 @@ class GroupMessageConsumer(AsyncConsumer):
         if front_text is not None:
             loaded_dict_data = json.loads(front_text)
             msg = loaded_dict_data.get('message')
-            print(msg)
-            # await self.send({
-            #     "type": "websocket.send",
-            #     "text": msg
-            # })
+            user_obj = self.scope['user']
+            g_id = self.group
+            group_id = Group.objects.get(id=g_id)
+            await self.create_message(msg, user_obj, group_id)
+
             await self.channel_layer.group_send(
                 self.group,
                 {
@@ -46,3 +46,7 @@ class GroupMessageConsumer(AsyncConsumer):
             "type": "websocket.send",
             "text": event['text']
         })
+
+    @database_sync_to_async
+    def create_message(self, msg, user_obj, group_id):
+        return GroupMessage.objects.create(group=group_id, message=msg, messaged_by=user_obj)
