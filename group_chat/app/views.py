@@ -140,37 +140,38 @@ class UserProfile(generics.GenericAPIView, mixins.UpdateModelMixin, mixins.Retri
         return self.update(request, id)
 
 
-class CreateGroups(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
+class CreateGroups(APIView):
 
-    queryset = Group.objects.all()
+    # queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = (permissions.IsAuthenticated,)
-    parser_classes = (MultiPartParser, FormParser, JSONParser)
+    # parser_classes = (MultiPartParser, FormParser, JSONParser)
+    #
+    # def post(self, request, *args, **kwargs):
+    #     return self.create(request, *args, **kwargs)
+    #
+    # def perform_create(self, serializer):
+    #     serializer.save(admin=self.request.user)
+    #     g_id = serializer.data.get('id')
+    #     group = Group.objects.get(pk=g_id)
+    #     group.members.add(self.request.user)
 
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
 
-    def perform_create(self, serializer):
-        serializer.save(admin=self.request.user)
-        g_id = serializer.data.get('id')
-        group = Group.objects.get(pk=g_id)
-        group.members.add(self.request.user)
+        serializer = GroupSerializer(data=request.data)
+        user_obj = self.request.user
 
-    # def post(self, request, *args, **kwargs):
-    #
-    #     serializer = GroupSerializer(data=request.data)
-    #     user_obj = self.request.user
-    #
-    #     if serializer.is_valid():
-    #         serializer.save(admin=self.request.user)
-    #         g_id = serializer.data.get('id')
-    #         group = Group.objects.get(pk=g_id)
-    #         group.members.add(user_obj)
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if serializer.is_valid():
+            serializer.save(admin=user_obj)
+            g_id = serializer.data.get('id')
+            print(g_id, "hi")
+            group = Group.objects.get(id=g_id)
+            print(group)
+            group.members.add(user_obj)
+            return Response({"group_id": g_id}, status=status.HTTP_201_CREATED)
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request)
+    # def get(self, request, *args, **kwargs):
+    #     return self.list(request)
 
 
 class GroupProfile (viewsets.ModelViewSet):
@@ -185,6 +186,8 @@ class GroupProfile (viewsets.ModelViewSet):
         if self.action == ('add_member' or 'delete_member'):
             return Add_DeleteMemberSerializer
         elif self.action == 'delete_member':
+            return Add_DeleteMemberSerializer
+        elif self.action == 'member_list':
             return Add_DeleteMemberSerializer
         else:
             return GroupSerializer
@@ -227,19 +230,47 @@ class GroupProfile (viewsets.ModelViewSet):
                     group.members.remove(member_obj)
             return Response("working")
 
+    # @action(detail=True, methods=['PUT'])
+    # def member_list(self, request, *args, **kwargs):
+    #     serializer = Add_DeleteMemberSerializer(data=request.data)
+    #     print(serializer)
+    #     if serializer.is_valid():
+    #         group = Group.objects.get(id=kwargs['id'])
+    #         print(group)
+    #         data = serializer.data.get('member_data')
+    #         print(data)
+    #         for key, value in data.items():
+    #             value = data[key]
+    #             member_obj = User.objects.get(phone_number=value)
+    #             print(member_obj)
+    #             x =
+    #
+
 
 class ContactList(APIView):
+
+    permission_classes = (permissions.IsAuthenticated,)
+    parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def post(self, request, *args, **kwargs):
 
         a = {}
+        b = {}
+        y = []
         data = request.data
+        print(data)
         for key, value in data.items():
+            a = {}
             value = data[key]
+            print(value)
             x = User.objects.filter(phone_number=value)
             if x:
                 a.update({key: value})
-        return Response(a)
+                y.append(a)
+                print(y)
+        b.update({'contact': y})
+        print(b)
+        return Response(b)
 
 
 class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
@@ -249,6 +280,12 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
     serializer_class = MessageSerializer
     permission_classes = (permissions.IsAuthenticated, IsMessageOwner, IsGroupMember)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
+
+    def get_serializer_class(self):
+        if self.action == 'leave_group':
+            return Add_DeleteMemberSerializer
+        else:
+            return MessageSerializer
 
     def post(self, request, g_id, *args, **kwargs):
 
@@ -285,6 +322,85 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
             return self.destroy(request, g_id, id)
         else:
             pass
+
+    @action(detail=True, methods=['PUT'])
+    def leave_group(self, request, *args, **kwargs):
+
+        serializer = GroupSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            group = Group.objects.get(id=kwargs['id'])
+            print(group)
+            # data = serializer.data.get('member_data')
+            user_obj = self.request.user
+            group.members.remove(user_obj)
+            return Response({"info": "you left group"})
+
+#
+# class Message(viewsets.ModelViewSet):
+#
+#     queryset = GroupMessage.objects.all()
+#     lookup_field = 'id'
+#     serializer_class = MessageSerializer
+#     permission_classes = (permissions.IsAuthenticated, IsMessageOwner, IsGroupMember)
+#     parser_classes = (MultiPartParser, FormParser, JSONParser)
+#
+#     def get_serializer_class(self):
+#         if self.action == 'leave_group':
+#             return Add_DeleteMemberSerializer
+#         else:
+#             return GroupSerializer
+#
+#     def post(self, request, g_id, *args, **kwargs):
+#
+#     def perform_create(self, serializer):
+#
+#         serializer = MessageSerializer(data=request.data)
+#
+#         if serializer.is_valid():
+#             user_obj = request.user
+#             group = Group.objects.get(pk=g_id)
+#             g = Group.objects.filter(pk=g_id)
+#             member = Group.objects.filter(members=user_obj)
+#             y = set(g).intersection(set(member))
+#             if y:
+#                 serializer.save(messaged_by=user_obj, group=group)
+#                 return Response(status=status.HTTP_200_OK)
+#             else:
+#                 return Response({'info': 'not allowed'})
+#
+#     def get(self, request, g_id, id=None, *args, **kwargs):
+#
+#         user_obj = request.user
+#         g = Group.objects.filter(pk=g_id)
+#         member = Group.objects.filter(members=user_obj)
+#         y = set(g).intersection(set(member))
+#         if y:
+#             group_messages = GroupMessage.objects.filter(group=g_id)
+#             serializer = MessageSerializer(group_messages, many=True)
+#             return Response(serializer.data)
+#         else:
+#             return Response({'info': 'not allowed'})
+#
+#     def delete(self, request, g_id, id=None, *args, **kwargs):
+#
+#         if id:
+#             return self.destroy(request, g_id, id)
+#         else:
+#             pass
+#
+#     @action(detail=True, methods=['PUT'])
+#     def leave_group(self, request, *args, **kwargs):
+#
+#         serializer = GroupSerializer(data=request.data)
+#         print(serializer)
+#         if serializer.is_valid():
+#             group = Group.objects.get(id=kwargs['id'])
+#             print(group)
+#             # data = serializer.data.get('member_data')
+#             user_obj = self.request.user
+#             group.members.remove(user_obj)
+#             return Response({"info": "you left group"})
 
 
 class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
