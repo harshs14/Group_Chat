@@ -146,15 +146,6 @@ class CreateGroups(APIView):
     serializer_class = GroupSerializer
     permission_classes = (permissions.IsAuthenticated,)
     # parser_classes = (MultiPartParser, FormParser, JSONParser)
-    #
-    # def post(self, request, *args, **kwargs):
-    #     return self.create(request, *args, **kwargs)
-    #
-    # def perform_create(self, serializer):
-    #     serializer.save(admin=self.request.user)
-    #     g_id = serializer.data.get('id')
-    #     group = Group.objects.get(pk=g_id)
-    #     group.members.add(self.request.user)
 
     def post(self, request, *args, **kwargs):
 
@@ -169,9 +160,6 @@ class CreateGroups(APIView):
             print(group)
             group.members.add(user_obj)
             return Response({"group_id": g_id}, status=status.HTTP_201_CREATED)
-
-    # def get(self, request, *args, **kwargs):
-    #     return self.list(request)
 
 
 class GroupProfile (viewsets.ModelViewSet):

@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f7f0221-5781-4846-a56f-d2348f8f1759" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/runtime" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/group_chat/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/group_pic/IMG_1401.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/IMG_20190109_012430.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/IMG_20190109_012430_AulpbWu.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/IMG_20190109_012430_J4cCZzD.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/IMG_20190109_012430_LW8ViQj.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/group_chat/media/member_pic/IMG_20190109_012430_oW9OvwH.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/group_chat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/group_chat/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/group_chat/group_chat/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/group_chat/group_chat/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +20,7 @@
     <session id="1713823416">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="54" />
+          <entry key="project.closed" value="56" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="5" />
           <entry key="project.open.time.12" value="1" />
@@ -37,8 +33,8 @@
           <entry key="project.open.time.25" value="2" />
           <entry key="project.open.time.28" value="3" />
           <entry key="project.open.time.29" value="2" />
-          <entry key="project.open.time.30" value="1" />
-          <entry key="project.open.time.31" value="4" />
+          <entry key="project.open.time.30" value="2" />
+          <entry key="project.open.time.31" value="5" />
           <entry key="project.open.time.32" value="3" />
           <entry key="project.open.time.33" value="4" />
           <entry key="project.open.time.34" value="3" />
@@ -46,6 +42,7 @@
           <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.37" value="2" />
           <entry key="project.open.time.38" value="3" />
+          <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.41" value="1" />
           <entry key="project.open.time.42" value="2" />
           <entry key="project.open.time.43" value="1" />
@@ -63,15 +60,17 @@
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.71" value="1" />
           <entry key="project.open.time.83" value="1" />
-          <entry key="project.opened" value="80" />
+          <entry key="project.opened" value="83" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="Procfile" value="1" />
           <entry key="html" value="4" />
           <entry key="jpeg" value="2" />
           <entry key="jpg" value="1" />
-          <entry key="py" value="40" />
+          <entry key="py" value="41" />
+          <entry key="runtime" value="1" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
@@ -79,61 +78,46 @@
         <counts>
           <entry key="HTML" value="4" />
           <entry key="Image" value="3" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="40" />
+          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="Python" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="Procfile" value="11" />
           <entry key="html" value="2769" />
-          <entry key="py" value="17702" />
+          <entry key="py" value="17747" />
+          <entry key="runtime" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="2769" />
-          <entry key="Python" value="17702" />
+          <entry key="PLAIN_TEXT" value="16" />
+          <entry key="Python" value="17747" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/group_chat/app/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/group_chat/app/templates/group_messages.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/group_chat/app/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/group_chat/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2363">
-              <caret line="139" column="44" selection-start-line="139" selection-start-column="44" selection-end-line="139" selection-end-column="44" />
+            <state relative-caret-position="238">
+              <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/group_chat/group_chat/wsgi.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+              <folding>
+                <element signature="e#226#235#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -141,12 +125,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group_chat/app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="231" lean-forward="true" selection-start-line="231" selection-end-line="231" />
+            <state relative-caret-position="262">
+              <caret line="481" selection-start-line="481" selection-end-line="481" />
               <folding>
-                <marker date="1549535801790" expanded="true" signature="9045:9171" ph="..." />
-                <marker date="1549535801790" expanded="true" signature="12521:12530" ph="..." />
+                <marker date="1549545867694" expanded="true" signature="8615:8741" ph="..." />
+                <marker date="1549545867694" expanded="true" signature="12091:12100" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Procfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="23" selection-start-column="23" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/runtime">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="12" selection-start-column="12" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -235,7 +237,6 @@
         <option value="$PROJECT_DIR$/group_chat/app/templates/app/room.html" />
         <option value="$PROJECT_DIR$/group_chat/app/templates/app/group_messages.html" />
         <option value="$PROJECT_DIR$/group_chat/app/models.py" />
-        <option value="$PROJECT_DIR$/group_chat/group_chat/settings.py" />
         <option value="$PROJECT_DIR$/group_chat/group_chat/routing.py" />
         <option value="$PROJECT_DIR$/group_chat/app/routing.py" />
         <option value="$PROJECT_DIR$/group_chat/app/consumers.py" />
@@ -243,14 +244,17 @@
         <option value="$PROJECT_DIR$/group_chat/app/urls.py" />
         <option value="$PROJECT_DIR$/group_chat/app/serializers.py" />
         <option value="$PROJECT_DIR$/group_chat/app/views.py" />
+        <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$PROJECT_DIR$/runtime" />
+        <option value="$PROJECT_DIR$/group_chat/group_chat/wsgi.py" />
+        <option value="$PROJECT_DIR$/group_chat/group_chat/settings.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -273,19 +277,7 @@
               <item name="Group_Chat" type="b2602c69:ProjectViewProjectNode" />
               <item name="Group_Chat" type="462c0819:PsiDirectoryNode" />
               <item name="group_chat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Group_Chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Group_Chat" type="462c0819:PsiDirectoryNode" />
               <item name="group_chat" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Group_Chat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Group_Chat" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -331,10 +323,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="676" y="0" width="697" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15178572" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30955994" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -345,7 +337,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4985119" visible="true" weight="0.40983605" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4985119" visible="true" weight="0.44259566" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5014881" side_tool="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -429,9 +421,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/group_chat/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/group_chat/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -463,17 +452,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/group_chat/app/templates/group_messages.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/group_chat/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
-          <caret line="139" column="44" selection-start-line="139" selection-start-column="44" selection-end-line="139" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -527,19 +516,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/group_chat/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="231" lean-forward="true" selection-start-line="231" selection-end-line="231" />
+        <state relative-caret-position="262">
+          <caret line="481" selection-start-line="481" selection-end-line="481" />
           <folding>
-            <marker date="1549535801790" expanded="true" signature="9045:9171" ph="..." />
-            <marker date="1549535801790" expanded="true" signature="12521:12530" ph="..." />
+            <marker date="1549545867694" expanded="true" signature="8615:8741" ph="..." />
+            <marker date="1549545867694" expanded="true" signature="12091:12100" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/group_chat/app/templates/group_messages.html">
+    <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runtime">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/group_chat/group_chat/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+          <folding>
+            <element signature="e#226#235#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/group_chat/group_chat/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
         </state>
       </provider>
     </entry>
