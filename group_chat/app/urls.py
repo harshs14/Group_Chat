@@ -26,6 +26,7 @@ urlpatterns = [
     re_path(r'^group/(?P<g_id>[0-9]+)/$', views.Message.as_view(), name='message'),
     re_path(r'^group/(?P<g_id>[0-9]+)/(?P<id>[0-9]+)/$', views.Message.as_view(), name='message_detail'),
     url(r'^testgroup/(?P<g_id>[0-9]+)/$', views.TestMessage.as_view(), name='test_message'),
+    url(r'^exitgroup/(?P<g_id>[0-9]+)/$', views.ExitGroup.as_view(), name='exit_group'),
     re_path(r'^testgroup/(?P<g_id>[0-9]+)/(?P<id>[0-9]+)/$', views.TestMessage.as_view(), name='test_message_detail'),
     re_path(r'^group/$', views.GroupList.as_view(), name='group'),
                   url(r'^docs/', include_docs_urls(title='Your API',
