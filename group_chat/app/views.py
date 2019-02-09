@@ -477,6 +477,19 @@ class GroupList(generics.GenericAPIView):
         serializer = GroupSerializer(g, many=True)
         return Response(serializer.data)
 
+class ExitGroup(APIView):
+
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = (permissions.IsAuthenticated, IsGroupMember)
+    lookup_field = 'g_id'
+
+    def get(self, request, *args, **kwargs):
+        group = Group.objects.get(id=kwargs['g_id'])
+        user_obj = self.request.user
+        group.members.remove(user_obj)
+        return Response({"info": "you left group"})
+
 
 class Logout(APIView):
 
