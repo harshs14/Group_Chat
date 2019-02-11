@@ -172,18 +172,18 @@ class GroupProfile (viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == ('add_member' or 'delete_member'):
-            return Add_DeleteMemberSerializer
+            return MemberSerializer
         elif self.action == 'delete_member':
-            return Add_DeleteMemberSerializer
+            return MemberSerializer
         elif self.action == 'member_list':
-            return Add_DeleteMemberSerializer
+            return MemberSerializer
         else:
             return GroupSerializer
 
     @action(detail=True, methods=['PUT'])
     def add_member(self, request, *args, **kwargs):
 
-        serializer = Add_DeleteMemberSerializer(data=request.data)
+        serializer = MemberSerializer(data=request.data)
         print(serializer)
         if serializer.is_valid():
             group = Group.objects.get(id=kwargs['id'])
@@ -202,7 +202,7 @@ class GroupProfile (viewsets.ModelViewSet):
     @action(detail=True, methods=['PUT'])
     def delete_member(self, request, *args, **kwargs):
 
-        serializer = Add_DeleteMemberSerializer(data=request.data)
+        serializer = MemberSerializer(data=request.data)
         print(serializer)
         if serializer.is_valid():
             group = Group.objects.get(id=kwargs['id'])
@@ -218,21 +218,36 @@ class GroupProfile (viewsets.ModelViewSet):
                     group.members.remove(member_obj)
             return Response("working")
 
-    # @action(detail=True, methods=['PUT'])
-    # def member_list(self, request, *args, **kwargs):
-    #     serializer = Add_DeleteMemberSerializer(data=request.data)
-    #     print(serializer)
-    #     if serializer.is_valid():
-    #         group = Group.objects.get(id=kwargs['id'])
-    #         print(group)
-    #         data = serializer.data.get('member_data')
-    #         print(data)
-    #         for key, value in data.items():
-    #             value = data[key]
-    #             member_obj = User.objects.get(phone_number=value)
-    #             print(member_obj)
-    #             x =
-    #
+    @action(detail=True, methods=['PUT'])
+    def member_list(self, request, *args, **kwargs):
+
+        serializer = MemberSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            b = {}
+            y = []
+            group = Group.objects.get(id=kwargs['id'])
+            print(group)
+            data = serializer.data.get('member_data')
+            print(data)
+            g_id = Group.objects.filter(id=kwargs['id'])
+            for key, value in data.items():
+                a = {}
+                value = data[key]
+                print(data)
+                member_obj = User.objects.get(phone_number=value)
+                print(member_obj)
+                already_member = Group.objects.filter(members=member_obj)
+                common_group = set(g_id).intersection(set(already_member))
+                if common_group:
+                    pass
+                else:
+                    a.update({key: value})
+                    y.append(a)
+                    print(y)
+            b.update({'member_list': y})
+            print(b)
+            return Response(b)
 
 
 class ContactList(APIView):
@@ -271,7 +286,7 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
 
     def get_serializer_class(self):
         if self.action == 'leave_group':
-            return Add_DeleteMemberSerializer
+            return MemberSerializer
         else:
             return MessageSerializer
 
@@ -324,72 +339,6 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
             group.members.remove(user_obj)
             return Response({"info": "you left group"})
 
-#
-# class Message(viewsets.ModelViewSet):
-#
-#     queryset = GroupMessage.objects.all()
-#     lookup_field = 'id'
-#     serializer_class = MessageSerializer
-#     permission_classes = (permissions.IsAuthenticated, IsMessageOwner, IsGroupMember)
-#     parser_classes = (MultiPartParser, FormParser, JSONParser)
-#
-#     def get_serializer_class(self):
-#         if self.action == 'leave_group':
-#             return Add_DeleteMemberSerializer
-#         else:
-#             return GroupSerializer
-#
-#     def post(self, request, g_id, *args, **kwargs):
-#
-#     def perform_create(self, serializer):
-#
-#         serializer = MessageSerializer(data=request.data)
-#
-#         if serializer.is_valid():
-#             user_obj = request.user
-#             group = Group.objects.get(pk=g_id)
-#             g = Group.objects.filter(pk=g_id)
-#             member = Group.objects.filter(members=user_obj)
-#             y = set(g).intersection(set(member))
-#             if y:
-#                 serializer.save(messaged_by=user_obj, group=group)
-#                 return Response(status=status.HTTP_200_OK)
-#             else:
-#                 return Response({'info': 'not allowed'})
-#
-#     def get(self, request, g_id, id=None, *args, **kwargs):
-#
-#         user_obj = request.user
-#         g = Group.objects.filter(pk=g_id)
-#         member = Group.objects.filter(members=user_obj)
-#         y = set(g).intersection(set(member))
-#         if y:
-#             group_messages = GroupMessage.objects.filter(group=g_id)
-#             serializer = MessageSerializer(group_messages, many=True)
-#             return Response(serializer.data)
-#         else:
-#             return Response({'info': 'not allowed'})
-#
-#     def delete(self, request, g_id, id=None, *args, **kwargs):
-#
-#         if id:
-#             return self.destroy(request, g_id, id)
-#         else:
-#             pass
-#
-#     @action(detail=True, methods=['PUT'])
-#     def leave_group(self, request, *args, **kwargs):
-#
-#         serializer = GroupSerializer(data=request.data)
-#         print(serializer)
-#         if serializer.is_valid():
-#             group = Group.objects.get(id=kwargs['id'])
-#             print(group)
-#             # data = serializer.data.get('member_data')
-#             user_obj = self.request.user
-#             group.members.remove(user_obj)
-#             return Response({"info": "you left group"})
-
 
 class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
 
@@ -418,24 +367,6 @@ class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.Retriev
             return render(request, "group_messages.html",
                           {'group_messages': group_messages, "serializer": serializer, "test_group": test_group,
                            })
-
-        # if not serializer.is_valid():
-        #     print("no")
-        #     return Response({'serializer': serializer})
-
-    #
-    # if serializer.is_valid():
-    #         user_obj = request.user
-    #
-    #         group = Group.objects.get(pk=g_id)
-    #         g = Group.objects.filter(pk=g_id)
-    #         member = Group.objects.filter(members=user_obj)
-    #         y = set(g).intersection(set(member))
-    #         if y:
-    #             serializer.save(messaged_by=user_obj, group=group)
-    #             return Response({"test_group": group, "serializer": serializer}, status=status.HTTP_200_OK)
-    #         else:
-    #             return Response({'info': 'not allowed'})
 
     def get(self, request, g_id, id=None, *args, **kwargs):
 

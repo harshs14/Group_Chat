@@ -49,7 +49,7 @@ class GroupSerializer(serializers.ModelSerializer):
         read_only_fields = ('admin', 'members', 'id')
 
 
-class Add_DeleteMemberSerializer(serializers.Serializer):
+class MemberSerializer(serializers.Serializer):
     member_data = serializers.JSONField(allow_null=True)
 
     class Meta:
