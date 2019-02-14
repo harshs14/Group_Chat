@@ -284,12 +284,6 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
     permission_classes = (permissions.IsAuthenticated, IsMessageOwner, IsGroupMember)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
-    def get_serializer_class(self):
-        if self.action == 'leave_group':
-            return MemberSerializer
-        else:
-            return MessageSerializer
-
     def post(self, request, g_id, *args, **kwargs):
 
         serializer = MessageSerializer(data=request.data)
@@ -325,19 +319,6 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
             return self.destroy(request, g_id, id)
         else:
             pass
-
-    @action(detail=True, methods=['PUT'])
-    def leave_group(self, request, *args, **kwargs):
-
-        serializer = GroupSerializer(data=request.data)
-        print(serializer)
-        if serializer.is_valid():
-            group = Group.objects.get(id=kwargs['id'])
-            print(group)
-            # data = serializer.data.get('member_data')
-            user_obj = self.request.user
-            group.members.remove(user_obj)
-            return Response({"info": "you left group"})
 
 
 class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
