@@ -1,4 +1,5 @@
 import json
+import random
 from django.shortcuts import get_object_or_404
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import generics, permissions, status, mixins
@@ -24,6 +25,7 @@ from . models import *
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from .permissions import *         
 from rest_framework import filters
+
 
 # -----------------------User Registration/Signup------------------------------------------------------------------
 class Register(APIView):
@@ -53,24 +55,28 @@ class Register(APIView):
         if User.objects.filter(email=email):
             return Response({'info': 'email exits!!!'})
 
+        token = random.randint(1000, 10000)
+        print(token)
         user = User.objects.create_user(email=email, username=username, password=password)
+        otp_obj = Otp.objects.create(user=user, otp=token)
 
         user.is_active = False
         user.save()
 
-        current_site = get_current_site(request)
+        # current_site = get_current_site(request)
         subject = 'GROUP CHAT VERIFICATION'
-        message = render_to_string('app/acc_active_email.html', {
-
-            'user': user,
-            'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode,
-            'token': account_activation_token.make_token(user),
-        })
+        # message = render_to_string('app/acc_active_email.html', {
+        #
+        #     'user': user,
+        #     'domain': current_site.domain,
+        #     'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode,
+        #     'token': account_activation_token.make_token(user),
+        # })
+        message = "YOUR OTP:- " + str(otp_obj.otp)
         from_mail = EMAIL_HOST_USER
         to_mail = [user.email]
         send_mail(subject, message, from_mail, to_mail, fail_silently=False)
-        messages.success(request, 'VERIFY YOUR EMAIL.')
+        # messages.success(request, 'VERIFY YOUR EMAIL.')
 
         return Response({'info': 'user created', 'user_id': user.id}, status=status.HTTP_201_CREATED)
 
@@ -96,6 +102,8 @@ class Activate(APIView):
         else:
             messages.error(request, "Activation Email Link is Invalid.Please try again!!")
             return redirect('register')
+
+
 
 
 class Login(generics.CreateAPIView):
@@ -184,7 +192,6 @@ class GroupProfile (viewsets.ModelViewSet):
     def add_member(self, request, *args, **kwargs):
 
         serializer = MemberSerializer(data=request.data)
-        print(serializer)
         if serializer.is_valid():
             group = Group.objects.get(id=kwargs['id'])
             print(group)
@@ -198,6 +205,9 @@ class GroupProfile (viewsets.ModelViewSet):
                 if member_obj:
                     group.members.add(member_obj)
             return Response("working")
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=True, methods=['PUT'])
     def delete_member(self, request, *args, **kwargs):
@@ -261,18 +271,18 @@ class ContactList(APIView):
         b = {}
         y = []
         data = request.data
-        print(data)
+        # print(data)
         for key, value in data.items():
             a = {}
             value = data[key]
-            print(value)
+            # print(value)
             x = User.objects.filter(phone_number=value)
             if x:
                 a.update({key: value})
                 y.append(a)
-                print(y)
+                # print(y)
         b.update({'contact': y})
-        print(b)
+        # print(b)
         return Response(b)
 
 

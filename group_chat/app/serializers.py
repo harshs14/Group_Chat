@@ -61,6 +61,7 @@ class MemberSerializer(serializers.Serializer):
 
 
 class MessageSerializer(serializers.ModelSerializer):
+    messaged_by = UserProfileSerializer()
 
     class Meta:
         model = GroupMessage
