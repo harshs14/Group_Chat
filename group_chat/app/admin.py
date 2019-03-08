@@ -1,8 +1,9 @@
 from django.contrib import admin
 
-from .models import Group, GroupMessage, User
+from .models import *
 
 admin.site.register(User)
 admin.site.register(Group)
 admin.site.register(GroupMessage)
+admin.site.register(Otp)
 
