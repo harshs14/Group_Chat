@@ -35,3 +35,8 @@ class GroupMessage(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Otp(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    otp = models.IntegerField()

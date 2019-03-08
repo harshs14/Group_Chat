@@ -24,6 +24,7 @@
     var wsStart = 'ws://';
     var endpoint = wsStart + loc.host + loc.pathname;
     var socket = new ReconnectingWebSocket(endpoint);
+
     var form_data = $('#form_data');
     var msg_input = $('.form-control');
     var chat_holder = $('#chat_items');
