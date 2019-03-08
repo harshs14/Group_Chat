@@ -67,3 +67,12 @@ class MessageSerializer(serializers.ModelSerializer):
         model = GroupMessage
         fields = ('id', 'message', 'messaged_by', 'file_message', 'time', 'group')
         read_only_fields = ('id', 'time', 'messaged_by', 'group')
+
+
+class OtpSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Otp
+        fields = ('user', 'otp')
+        read_only_fields = 'user'
+
