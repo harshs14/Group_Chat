@@ -104,6 +104,24 @@ class Activate(APIView):
             return redirect('register')
 
 
+class ActivateOtp(APIView):
+    queryset = User.objects.all()
+    serializer_class = OtpSerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, user_id, *args, **kwargs):
+
+        user = self.request.user
+        serializer = OtpSerializer(data=request.data)
+        if serializer.is_valid():
+            otp_obj = Otp.objects.get(user=user_id)
+            if otp_obj.otp == serializer.data.get('otp'):
+                user.is_active = True
+                user.save()
+                return Response("VERIFIED")
+            else:
+                return Response("INVALID OTP")
+
 
 
 class Login(generics.CreateAPIView):
