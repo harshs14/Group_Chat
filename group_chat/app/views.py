@@ -128,6 +128,34 @@ class ActivateOtp(APIView):
                 return Response("INVALID OTP")
 
 
+class ForgetPasswordEmail(APIView):
+    queryset = User.objects.all()
+    serializer_class = ForgetPasswordEmailSerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, *args, **kwargs):
+
+        serializer = ForgetPasswordEmailSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.data.get('email')
+            user_obj = User.objects.get(email=email)
+
+            if user_obj:
+                token = random.randint(1000, 10000)
+                print(token)
+                otp_obj = Otp.objects.create(user_id=user_obj, otp=token)
+
+                subject = 'GROUP CHAT PASSWORD RECOVERY'
+                message = "YOUR OTP:- " + str(otp_obj.otp)
+                from_mail = EMAIL_HOST_USER
+                to_mail = [user_obj.email]
+                send_mail(subject, message, from_mail, to_mail, fail_silently=False)
+
+                return Response({'info': 'OTP SENT'})
+            else:
+                return Response({'info': 'EMAIL NOT FOUND'})
+
+
 class Login(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserLoginSerializer
