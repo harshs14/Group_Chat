@@ -123,7 +123,6 @@ class ActivateOtp(APIView):
                 return Response("INVALID OTP")
 
 
-
 class Login(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserLoginSerializer

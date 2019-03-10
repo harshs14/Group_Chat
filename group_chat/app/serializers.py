@@ -42,7 +42,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class GroupSerializer(serializers.ModelSerializer):
-
+    members = UserProfileSerializer(many=True, read_only=True)
+    
     class Meta:
         model = Group
         fields = ('id', 'name', 'avatar', 'admin', 'members',)
@@ -61,7 +62,7 @@ class MemberSerializer(serializers.Serializer):
 
 
 class MessageSerializer(serializers.ModelSerializer):
-    messaged_by = UserProfileSerializer()
+    # messaged_by = UserProfileSerializer()
 
     class Meta:
         model = GroupMessage
