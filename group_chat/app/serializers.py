@@ -77,3 +77,24 @@ class OtpSerializer(serializers.ModelSerializer):
         fields = ('user_id', 'otp', 'id')
         read_only_fields = ('user_id', 'id')
 
+
+class ForgetPasswordEmailSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    class Meta:
+        field = 'email'
+
+
+class ForgetPasswordOtpSerializer(serializers.ModelSerializer):
+    new_password = serializers.CharField(
+        style={'input_type': 'password'}
+    )
+
+    confirm_new_password = serializers.CharField(
+        style={'input_type': 'password'}
+    )
+
+    class Meta:
+        model = Otp
+        fields = ('user_id', 'otp', 'id', 'new_password', 'confirm_new_password')
+        read_only_fields = ('user_id', 'id')
