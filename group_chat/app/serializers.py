@@ -43,7 +43,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class GroupSerializer(serializers.ModelSerializer):
     members = UserProfileSerializer(many=True, read_only=True)
-    
+
     class Meta:
         model = Group
         fields = ('id', 'name', 'avatar', 'admin', 'members',)
@@ -74,6 +74,6 @@ class OtpSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Otp
-        fields = ('user', 'otp')
-        read_only_fields = 'user'
+        fields = ('user_id', 'otp', 'id')
+        read_only_fields = ('user_id', 'id')
 

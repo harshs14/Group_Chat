@@ -58,7 +58,7 @@ class Register(APIView):
         token = random.randint(1000, 10000)
         print(token)
         user = User.objects.create_user(email=email, username=username, password=password)
-        otp_obj = Otp.objects.create(user=user, otp=token)
+        otp_obj = Otp.objects.create(user_id=user, otp=token)
 
         user.is_active = False
         user.save()
@@ -111,11 +111,16 @@ class ActivateOtp(APIView):
 
     def post(self, request, user_id, *args, **kwargs):
 
-        user = self.request.user
         serializer = OtpSerializer(data=request.data)
         if serializer.is_valid():
-            otp_obj = Otp.objects.get(user=user_id)
+            otp_obj = Otp.objects.get(user_id=user_id)
+            user = User.objects.get(pk=user_id)
+
+            print(otp_obj)
+            print(otp_obj.otp)
+            print(serializer.data.get('otp'))
             if otp_obj.otp == serializer.data.get('otp'):
+                print("hi")
                 user.is_active = True
                 user.save()
                 return Response("VERIFIED")
