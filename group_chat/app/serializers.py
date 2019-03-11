@@ -9,13 +9,8 @@ User = get_user_model()
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(
-        style={'input_type': 'password'}
-    )
-
-    confirm_password = serializers.CharField(
-        style={'input_type': 'password'}
-    )
+    password = serializers.CharField(required=True, style={'input_type': 'password'})
+    confirm_password = serializers.CharField(required=True, style={'input_type': 'password'})
 
     class Meta:
         model = User
@@ -79,22 +74,18 @@ class OtpSerializer(serializers.ModelSerializer):
 
 
 class ForgetPasswordEmailSerializer(serializers.Serializer):
-    email = serializers.EmailField()
+    email = serializers.EmailField(required=True)
 
     class Meta:
         field = 'email'
 
 
 class ForgetPasswordOtpSerializer(serializers.ModelSerializer):
-    new_password = serializers.CharField(
-        style={'input_type': 'password'}
-    )
+    new_password = serializers.CharField(required=True, style={'input_type': 'password'})
 
-    confirm_new_password = serializers.CharField(
-        style={'input_type': 'password'}
-    )
+    confirm_password = serializers.CharField(required=True, style={'input_type': 'password'})
 
     class Meta:
         model = Otp
-        fields = ('user_id', 'otp', 'id', 'new_password', 'confirm_new_password')
+        fields = ('user_id', 'otp', 'id', 'new_password', 'confirm_password')
         read_only_fields = ('user_id', 'id')

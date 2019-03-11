@@ -123,9 +123,12 @@ class ActivateOtp(APIView):
                 print("hi")
                 user.is_active = True
                 user.save()
+                otp_obj.delete()
                 return Response("VERIFIED")
             else:
                 return Response("INVALID OTP")
+        else:
+            return Response("INVALID OTP")
 
 
 class ForgetPasswordEmail(APIView):
@@ -140,6 +143,10 @@ class ForgetPasswordEmail(APIView):
             email = serializer.data.get('email')
             user_obj = User.objects.get(email=email)
 
+            # old_otp_obj = Otp.objects.get(user_id=user_obj)
+            # if old_otp_obj:
+            #     old_otp_obj.delete()
+
             if user_obj:
                 token = random.randint(1000, 10000)
                 print(token)
@@ -151,9 +158,38 @@ class ForgetPasswordEmail(APIView):
                 to_mail = [user_obj.email]
                 send_mail(subject, message, from_mail, to_mail, fail_silently=False)
 
-                return Response({'info': 'OTP SENT'})
+                return Response({'info': 'OTP SENT', 'user_id': user_obj.id})
             else:
                 return Response({'info': 'EMAIL NOT FOUND'})
+        else:
+            return Response({'info': 'ENTER VALID EMAIL'})
+
+
+class ForgetPasswordOtp(APIView):
+    queryset = User.objects.all()
+    serializer_class = ForgetPasswordOtpSerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, user_id, *args, **kwargs):
+
+        serializer = ForgetPasswordOtpSerializer(data=request.data)
+        if serializer.is_valid():
+            otp = serializer.data.get('otp')
+            otp_obj = Otp.objects.get(user_id=user_id)
+            user_obj = User.objects.get(pk=user_id)
+            new_password = serializer.data.get('new_password')
+            confirm_password = serializer.data.get('confirm_password')
+
+            if otp_obj.otp == otp:
+                if new_password == confirm_password:
+                    user_obj.password = new_password
+                    return Response({'info': 'password changed'})
+                else:
+                    return Response({'info': 'passwords do not  match'})
+            else:
+                return Response({'info': 'INVALID OTP'})
+        else:
+            return Response({'info': 'INAVLID OTP'})
 
 
 class Login(generics.CreateAPIView):
@@ -448,6 +484,7 @@ class GroupList(generics.GenericAPIView):
         g = Group.objects.filter(members=user_obj)
         serializer = GroupSerializer(g, many=True)
         return Response(serializer.data)
+
 
 class ExitGroup(APIView):
 
