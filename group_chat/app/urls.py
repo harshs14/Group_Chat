@@ -13,8 +13,8 @@ router.register(r'groupprofile', GroupProfile, basename='group_profile')
 urlpatterns = [
     re_path(r'api/',include(router.urls)),
     re_path(r'^$', views.Register.as_view(), name='register'),
-    re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-            views.Activate.as_view(), name='activate'),
+    # re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    #         views.Activate.as_view(), name='activate'),
     re_path(r'^verify_otp/(?P<user_id>[0-9]+)/$', views.ActivateOtp.as_view(), name='verify_otp'),
     re_path(r'^forget_password_email/$', views.ForgetPasswordEmail.as_view(), name='forgot_password_email'),
     re_path(r'^forget_password_otp/(?P<user_id>[0-9]+)/$', views.ForgetPasswordOtp.as_view(), name='forgot_password_otp'),
