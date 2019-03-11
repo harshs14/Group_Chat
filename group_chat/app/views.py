@@ -182,7 +182,9 @@ class ForgetPasswordOtp(APIView):
 
             if otp_obj.otp == otp:
                 if new_password == confirm_password:
-                    user_obj.password = new_password
+                    user_obj.set_password(new_password)
+                    user_obj.save()
+                    otp_obj.delete()
                     return Response({'info': 'password changed'})
                 else:
                     return Response({'info': 'passwords do not  match'})
