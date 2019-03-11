@@ -1,5 +1,6 @@
 import json
 import random
+from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import generics, permissions, status, mixins
@@ -63,15 +64,7 @@ class Register(APIView):
         user.is_active = False
         user.save()
 
-        # current_site = get_current_site(request)
         subject = 'GROUP CHAT VERIFICATION'
-        # message = render_to_string('app/acc_active_email.html', {
-        #
-        #     'user': user,
-        #     'domain': current_site.domain,
-        #     'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode,
-        #     'token': account_activation_token.make_token(user),
-        # })
         message = "YOUR OTP:- " + str(otp_obj.otp)
         from_mail = EMAIL_HOST_USER
         to_mail = [user.email]
@@ -79,29 +72,6 @@ class Register(APIView):
         # messages.success(request, 'VERIFY YOUR EMAIL.')
 
         return Response({'info': 'user created', 'user_id': user.id}, status=status.HTTP_201_CREATED)
-
-
-class Activate(APIView):
-
-    def get(self, request, token, uidb64):
-
-        try:
-            uid = force_text(urlsafe_base64_decode(uidb64))
-            user = User.objects.get(pk=uid)
-
-        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-            user = None
-
-        if user is not None and account_activation_token.check_token(user, token):
-            user.is_active = True
-            user.save()
-            login(request, user)
-            messages.success(request, 'EMAIL VERIFIED')
-            return redirect("register")
-
-        else:
-            messages.error(request, "Activation Email Link is Invalid.Please try again!!")
-            return redirect('register')
 
 
 class ActivateOtp(APIView):
@@ -143,9 +113,9 @@ class ForgetPasswordEmail(APIView):
             email = serializer.data.get('email')
             user_obj = User.objects.get(email=email)
 
-            # old_otp_obj = Otp.objects.get(user_id=user_obj)
-            # if old_otp_obj:
-            #     old_otp_obj.delete()
+            old_otp_obj = Otp.objects.filter(user_id=user_obj)
+            if old_otp_obj:
+                old_otp_obj.delete()
 
             if user_obj:
                 token = random.randint(1000, 10000)
@@ -389,8 +359,10 @@ class Message(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveMod
         if serializer.is_valid():
             user_obj = request.user
             group = Group.objects.get(pk=g_id)
+
             g = Group.objects.filter(pk=g_id)
             member = Group.objects.filter(members=user_obj)
+
             y = set(g).intersection(set(member))
             if y:
                 serializer.save(messaged_by=user_obj, group=group)
@@ -471,21 +443,16 @@ class TestMessage(generics.GenericAPIView, mixins.ListModelMixin, mixins.Retriev
             pass
 
 
-class GroupList(generics.GenericAPIView):
+class GroupList(generics.ListAPIView):
 
-    queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    queryset = Group.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
-    parser_classes = (MultiPartParser, FormParser, JSONParser)
-    filter_backends = (filters.SearchFilter,)
-    search_fields = 'name'
+    search_fields = ('^name',)
+    filter_backends = (filters.SearchFilter, DjangoFilterBackend,)
 
-    def get(self, request, *args, **kwargs):
-
-        user_obj = request.user
-        g = Group.objects.filter(members=user_obj)
-        serializer = GroupSerializer(g, many=True)
-        return Response(serializer.data)
+    def get_queryset(self):
+        return Group.objects.filter(members=self.request.user)
 
 
 class ExitGroup(APIView):
