@@ -69,7 +69,6 @@ class Register(APIView):
         from_mail = EMAIL_HOST_USER
         to_mail = [user.email]
         send_mail(subject, message, from_mail, to_mail, fail_silently=False)
-        # messages.success(request, 'VERIFY YOUR EMAIL.')
 
         return Response({'info': 'user created', 'user_id': user.id}, status=status.HTTP_201_CREATED)
 
@@ -164,6 +163,31 @@ class ForgetPasswordOtp(APIView):
             return Response({'info': 'INAVLID OTP'})
 
 
+class ResendOtp(APIView):
+    queryset = User.objects.all()
+    serializer_class = ForgetPasswordOtpSerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def get(self, request, user_id, *args, **kwargs):
+
+        user_obj = User.objects.get(pk=user_id)
+        token = random.randint(1000, 10000)
+
+        old_otp_obj = Otp.objects.filter(user_id=user_obj)
+        if old_otp_obj:
+            old_otp_obj.delete()
+
+        otp_obj = Otp.objects.create(user_id=user_obj, otp=token)
+
+        subject = 'GROUP CHAT VERIFICATION'
+        message = "YOUR OTP:- " + str(otp_obj.otp)
+        from_mail = EMAIL_HOST_USER
+        to_mail = [user_obj.email]
+        send_mail(subject, message, from_mail, to_mail, fail_silently=False)
+
+        return Response({'info': 'otp resend, check your email', 'user_id': user_obj.id}, status=status.HTTP_201_CREATED)
+
+
 class Login(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserLoginSerializer
@@ -226,6 +250,8 @@ class CreateGroups(APIView):
             print(group)
             group.members.add(user_obj)
             return Response({"group_id": g_id}, status=status.HTTP_201_CREATED)
+        else:
+            return Response({"info": "invalid"})
 
 
 class GroupProfile (viewsets.ModelViewSet):

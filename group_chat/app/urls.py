@@ -18,6 +18,7 @@ urlpatterns = [
     re_path(r'^verify_otp/(?P<user_id>[0-9]+)/$', views.ActivateOtp.as_view(), name='verify_otp'),
     re_path(r'^forget_password_email/$', views.ForgetPasswordEmail.as_view(), name='forgot_password_email'),
     re_path(r'^forget_password_otp/(?P<user_id>[0-9]+)/$', views.ForgetPasswordOtp.as_view(), name='forgot_password_otp'),
+    re_path(r'^resend_otp/(?P<user_id>[0-9]+)/$', views.ResendOtp.as_view(), name='resend_otp'),
     re_path(r'^login/$', views.Login.as_view(), name='login'),
     re_path(r'^profile/(?P<id>[0-9]+)/$', views.UserProfile.as_view(), name='user_profile'),
     url(r'^new_group/$', views.CreateGroups.as_view(), name='create_group'),

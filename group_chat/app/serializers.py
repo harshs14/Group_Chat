@@ -32,13 +32,13 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'name', 'avatar', 'phone_number')
+        fields = ('name', 'avatar', 'phone_number')
         # read_only_fields = ('user',)
 
 
 class GroupSerializer(serializers.ModelSerializer):
     members = UserProfileSerializer(many=True, read_only=True)
-    admin = UserProfileSerializer()
+    # admin = UserProfileSerializer()
 
     class Meta:
         model = Group
