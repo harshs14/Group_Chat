@@ -7,7 +7,7 @@ from django.utils import timezone
 class User(AbstractUser):
 
     name = models.CharField(max_length=50, null=True, blank=True)
-    phone_number = PhoneNumberField(blank=True, help_text='Contact phone number')
+    phone_number = PhoneNumberField(blank=True, help_text='Contact phone number', unique=True)
     avatar = models.ImageField(upload_to='member_pic', default='profile.png')
 
     def __str__(self):
@@ -39,4 +39,5 @@ class GroupMessage(models.Model):
 
 class Otp(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    otp = models.IntegerField()
+    otp = models.IntegerField(null=False, blank=False)
+
