@@ -85,11 +85,7 @@ class ActivateOtp(APIView):
             otp_obj = Otp.objects.get(user_id=user_id)
             user = User.objects.get(pk=user_id)
 
-            print(otp_obj)
-            print(otp_obj.otp)
-            print(serializer.data.get('otp'))
             if otp_obj.otp == serializer.data.get('otp'):
-                print("hi")
                 user.is_active = True
                 user.save()
                 otp_obj.delete()
