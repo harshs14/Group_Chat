@@ -1,1 +1,0 @@
-web: gunicorn group_chat.wsgi --log-file -
