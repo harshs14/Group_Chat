@@ -7,7 +7,7 @@ from django.utils import timezone
 class User(AbstractUser):
 
     name = models.CharField(max_length=50, null=True, blank=True)
-    phone_number = PhoneNumberField(blank=True, help_text='Contact phone number', unique=True)
+    phone_number = PhoneNumberField(blank=True, null=True, help_text='Contact phone number', unique=True)
     avatar = models.ImageField(upload_to='member_pic', default='profile.png')
 
     def __str__(self):
