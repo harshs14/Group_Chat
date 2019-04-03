@@ -75,7 +75,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'group_chat.wsgi.application'
 
 ASGI_APPLICATION = 'group_chat.routing.application'
+<<<<<<< HEAD
 
+=======
+>>>>>>> d3922e36ad8c99af07754986d9332c169edc5394
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
