@@ -75,10 +75,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'group_chat.wsgi.application'
 
 ASGI_APPLICATION = 'group_chat.routing.application'
-<<<<<<< HEAD
 
-=======
->>>>>>> d3922e36ad8c99af07754986d9332c169edc5394
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -205,8 +202,8 @@ JWT_AUTH = {
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'onlineauction.si18@gmail.com'
-EMAIL_HOST_PASSWORD = 'onlineauctionhpi'
+EMAIL_HOST_USER = os.environ.get('email_id')
+EMAIL_HOST_PASSWORD = os.environ.get('email_password')
 EMAIL_PORT = 587
 
 AUTH_USER_MODEL = 'app.User'
