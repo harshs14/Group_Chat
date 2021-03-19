@@ -16,7 +16,7 @@ Django==2.1.4
 django-filter==2.0.0
 django-phonenumber-field==2.1.0
 django-redis==4.10.0
-djangorestframework==3.9.0
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 hiredis==1.0.0
 hyperlink==18.0.0
